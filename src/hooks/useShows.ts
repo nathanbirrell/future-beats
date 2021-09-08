@@ -11,6 +11,32 @@ type Options = {
   limit?: number;
 };
 
+// .select(`
+//       links,
+//       title,
+//       artwork,
+//       slug,
+//       duration,
+//       chapters(
+//         title,
+//         artwork,
+//         markers(
+//           id,
+//           timestamp,
+//           rawTrack,
+//           track(
+//             id,
+//             title,
+//             path,
+//             artwork,
+//             artist(
+//               id,
+//               title
+//             )
+//           )
+//         )
+//       )
+//     `)
 const defaultOptions = {
   select:
     "id,title,slug,artwork,content,tags,published_at,links,chapters(title,markers(id))",

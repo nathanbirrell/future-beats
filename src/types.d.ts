@@ -1,2 +1,3 @@
-declare module "soundcloud-audio";
-declare module "soundcloud";
+interface Window {
+  SC: any;
+}

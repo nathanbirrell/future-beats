@@ -1,4 +1,5 @@
 import React from "react";
+import { SoundCloudPlayer } from "./components/SoundCloudPlayer";
 
 import { imageLink } from "./helper";
 import { useRandomShow } from "./hooks/useShows";
@@ -7,7 +8,7 @@ const App = () => {
   const query = useRandomShow();
 
   const loading = query.loading;
-  const shows = query.data || [];
+  const shows = React.useMemo(() => query.data || [], [query]);
 
   console.log({ shows });
 
@@ -31,6 +32,10 @@ const App = () => {
           <p>{show.links && show.links.appleMusic}</p>
           <p>{show.links && show.links.soundcloud}</p>
           <p>{show.published_at}</p>
+
+          {show.links?.soundcloud && (
+            <SoundCloudPlayer link={show.links.soundcloud} />
+          )}
         </div>
       ))}
 
@@ -40,30 +45,3 @@ const App = () => {
 };
 
 export default App;
-
-// .select(`
-//       links,
-//       title,
-//       artwork,
-//       slug,
-//       duration,
-//       chapters(
-//         title,
-//         artwork,
-//         markers(
-//           id,
-//           timestamp,
-//           rawTrack,
-//           track(
-//             id,
-//             title,
-//             path,
-//             artwork,
-//             artist(
-//               id,
-//               title
-//             )
-//           )
-//         )
-//       )
-//     `)
