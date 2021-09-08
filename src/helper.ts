@@ -7,3 +7,9 @@ export const soulectionWebsiteLink = (relativeUrl: string) =>
 export const soulectionEpisodeLink = (slug: string) =>
   `${BASE_URL}/${EPISODE_LINK}/${slug}`;
 export const imageLink = (image: string) => `${IMAGES_BASE_URL}${image}`;
+
+export function generateRandomDate(start: Date, end: Date) {
+  return new Date(
+    start.getTime() + Math.random() * (end.getTime() - start.getTime())
+  );
+}
