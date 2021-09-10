@@ -12,6 +12,32 @@ export const imageLink = (image: string) =>
   // NOTE: some episodes have leading slash, others don't!
   `${IMAGES_BASE_URL}${image.startsWith("/") ? "" : "/"}${image}`;
 
+const linkLabels = {
+  soundcloud: "Soundcloud",
+  appleMusic: "Apple Music",
+  soulection: "Soulection",
+};
+export const getShowLinks = (show: Omit<Show, "chapters"> | undefined) => {
+  if (!show) return [];
+
+  const showLink = {
+    label: linkLabels["soulection"],
+    link: soulectionEpisodeLink(show.slug),
+  };
+
+  if (!show.links) return [showLink];
+
+  return [
+    showLink,
+    ...Object.entries(show.links).map(([key, link]) => {
+      return {
+        label: linkLabels[key as keyof Show["links"]],
+        link,
+      };
+    }),
+  ];
+};
+
 export function generateRandomDate(start: Date, end: Date) {
   return new Date(
     start.getTime() + Math.random() * (end.getTime() - start.getTime())

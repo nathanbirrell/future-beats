@@ -1,4 +1,4 @@
-import React, { Fragment, useMemo } from "react";
+import React, { Fragment, useEffect, useMemo, useState } from "react";
 import { RADIO_PLAYER_ID } from "../constants";
 import {
   durationStringToMilliseconds,
@@ -63,30 +63,61 @@ export const RadioPlayer = (props: Props) => {
     return result;
   }, [show, position]);
 
+  const [continuousPlay, setContinuousPlay] = useState(true);
+  const toggleContinousPlay = () => setContinuousPlay(!continuousPlay);
+  // Listen to position value and play next ep on completion
+  useEffect(() => {
+    if (!continuousPlay) return;
+    if (!position || !duration) return;
+    if (position < duration) return;
+
+    if (position >= duration) shuffleEpisode && shuffleEpisode();
+  }, [continuousPlay, position, duration, shuffleEpisode]);
+
   return (
     <Fragment>
-      <div>
-        Now Playing:
-        {currentTrack}
-      </div>
-      <br />
-      <div>
-        {millisecondsToDuration(position)} of {millisecondsToDuration(duration)}{" "}
-        (
-        {duration && (
-          <Fragment>{Math.round((position / duration) * 100)}%</Fragment>
+      {/* TODO: abstract into RadioControls component */}
+      <div className="flex-initial text-4xl mb-12">
+        <button className="rounded-sm  px-2" onClick={toggleContinousPlay}>
+          {continuousPlay ? "♾" : "OFF"}
+        </button>
+        <button className="rounded-sm  px-2" onClick={skipBack}>
+          {"⏪"}
+        </button>
+        <button className="px-2" onClick={togglePlay}>
+          {playing ? "⏸" : "▶️"}
+        </button>
+        <button className="rounded-sm  px-2" onClick={skipForward}>
+          {"⏩"}
+        </button>
+        {shuffleEpisode && (
+          <button
+            className="rounded-sm  px-2"
+            onClick={shuffleEpisode}
+            disabled={loading}
+          >
+            {"🔀"}
+          </button>
         )}
-        )
       </div>
 
-      <button onClick={skipBack}>Back 30sec</button>
-      <button onClick={togglePlay}>{playing ? "Pause" : "Play"}</button>
-      <button onClick={skipForward}>Forward 30sec</button>
-      {shuffleEpisode && (
-        <button onClick={shuffleEpisode} disabled={loading}>
-          Shuffle
-        </button>
-      )}
+      <div>
+        <p
+          title={`${millisecondsToDuration(
+            duration - position
+          )} remaining (${Math.round((position / duration) * 100)}%)`}
+        >
+          {millisecondsToDuration(position)}
+          {duration && ` of ${millisecondsToDuration(duration)}`}
+        </p>
+      </div>
+
+      <div>
+        <p className="text-sm uppercase tracking-wider opacity-70">
+          Now Playing:
+        </p>
+        <p>{currentTrack}</p>
+      </div>
 
       <HiddenSoundCloudPlayer
         id={RADIO_PLAYER_ID}
