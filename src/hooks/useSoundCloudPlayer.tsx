@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from "react";
+import { useIntervalRunner } from "./useIntervalRunner";
 
 interface Options {
   // ID of the iframe we want to control
@@ -12,34 +13,28 @@ export const useSoundCloudPlayer = ({ id }: Options) => {
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
 
-  let widget: any = useRef(undefined);
+  let widget = useRef<SoundCloudWidget>(undefined);
 
   useEffect(() => {
     widget.current = window.SC.Widget(id);
   }, [id]);
 
-  useEffect(() => {
-    if (!widget.current) return;
-
-    widget.current.getDuration((duration: number) => setDuration(duration));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [widget.current]);
-
   const updatePosition = () => {
-    if (!widget.current) return;
+    if (!widget || !widget.current) return;
 
+    // Update position value
     widget.current.getPosition((newPosition: number) =>
       setPosition(newPosition)
     );
+
+    // Update duration value
+    // This doesn't need to be updated every second, but had issues with setting-on-mount
+    widget.current.getDuration(
+      (duration: number) => duration && setDuration(duration)
+    );
   };
 
-  useEffect(() => {
-    const interval = setInterval(updatePosition, UPDATE_POSITION_FREQUENCY);
-
-    return () => {
-      clearInterval(interval);
-    };
-  }, []);
+  useIntervalRunner(updatePosition, UPDATE_POSITION_FREQUENCY);
 
   const play = () =>
     widget.current && widget.current.play() && setPlaying(true);
@@ -63,8 +58,6 @@ export const useSoundCloudPlayer = ({ id }: Options) => {
     const { direction, amountMs = 30 * 1000 } = options;
     try {
       if (!widget.current) throw new Error("No player!");
-
-      console.log({ position, amountMs });
 
       if (direction === "forward") {
         widget.current.seekTo(position + amountMs);
@@ -95,3 +88,45 @@ export const useSoundCloudPlayer = ({ id }: Options) => {
     skipForward,
   };
 };
+
+const hideIframe: React.HTMLAttributes<HTMLIFrameElement>["style"] = {
+  display: "none",
+  cursor: "none",
+  pointerEvents: "none",
+  position: "absolute",
+  bottom: "-100vh",
+  left: "-100vh",
+};
+
+type Props = React.HTMLAttributes<HTMLIFrameElement> & {
+  id: string;
+  link: string;
+  autoplay?: boolean;
+};
+
+export const HiddenSoundCloudPlayer = ({
+  id,
+  link,
+  autoplay = false,
+  ...props
+}: Props) => {
+  return (
+    <iframe
+      id={id}
+      title="Soundcloud Player"
+      width="300"
+      height="300"
+      scrolling="no"
+      allow={(autoplay && "autoplay") || undefined}
+      src={`${buildScSrc(link)}&auto_play=${autoplay}${extraScUrlConfig}`}
+      style={hideIframe}
+      {...props}
+    ></iframe>
+  );
+};
+
+const buildScSrc = (link: string) =>
+  `https://w.soundcloud.com/player/?url=${encodeURIComponent(link)}`;
+
+const extraScUrlConfig =
+  "&hide_related=true&show_comments=false&show_user=false&show_reposts=false&show_teaser=false&visual=false";

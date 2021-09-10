@@ -4,18 +4,17 @@ Make some certs in `.ssl/*`
 
 Make a `.env` file:
 
-```
+```bash
 HTTPS=true
 SSL_CRT_FILE=.ssl/cert.pem
 SSL_KEY_FILE=.ssl/key.pem
 
 REACT_APP_SUPABASE_URL=https://API_URL.supabase.co
-REACT_APP_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.API_KEY
-SUPABASE_OPENAPI_URL=https://API_URL.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.API_KEY
+REACT_APP_SUPABASE_ANON_KEY=API_KEY
+SUPABASE_OPENAPI_URL=https://API_URL.supabase.co/rest/v1/?apikey=API_KEY
 
 REACT_APP_SOULECTION_BASE_URL=https://soulection.com/
 ```
-
 
 ## Generate Typescript Types
 

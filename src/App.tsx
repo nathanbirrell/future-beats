@@ -1,5 +1,5 @@
 import React from "react";
-import { SoundCloudPlayer } from "./components/SoundCloudPlayer";
+import { RadioPlayer } from "./components/RadioPlayer";
 
 import { imageLink } from "./helper";
 import { useRandomShow } from "./hooks/useShows";
@@ -8,38 +8,41 @@ const App = () => {
   const query = useRandomShow();
 
   const loading = query.loading;
-  const shows = React.useMemo(() => query.data || [], [query]);
+  const [show] = React.useMemo(() => query.data || [], [query]);
 
-  console.log({ shows });
+  console.log({ show });
+
+  const imageSrc = show?.artwork && imageLink(show.artwork);
 
   return (
     <div className="App">
       <header className="App-header">Soulection 24/7</header>
 
-      {loading && "Loading..."}
+      {!show && loading && "Loading..."}
 
-      {shows.map((show) => (
+      {show && (
         <div key={show.id}>
-          {show.artwork && (
-            <img
-              src={imageLink(`/${show.artwork}`)}
-              alt={show.title}
-              width="320px"
-            />
+          {show?.artwork && (
+            <img src={imageSrc} alt={show.title} width="320px" />
           )}
           <h4>{show.title}</h4>
+
+          <p>{imageSrc}</p>
 
           <p>{show.links && show.links.appleMusic}</p>
           <p>{show.links && show.links.soundcloud}</p>
           <p>{show.published_at}</p>
 
           {show.links?.soundcloud && (
-            <SoundCloudPlayer link={show.links.soundcloud} />
+            <RadioPlayer
+              link={show.links.soundcloud}
+              shuffleEpisode={query.shuffleEpisode}
+              loading={query.loading}
+              show={show as Show}
+            />
           )}
         </div>
-      ))}
-
-      {/* <audio id="audio" preload="none" ref="audio" src={streamUrl} /> */}
+      )}
     </div>
   );
 };

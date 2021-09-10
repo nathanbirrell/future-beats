@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from "react";
+import { PostgrestResponse } from "@supabase/postgrest-js";
 
 import { definitions } from "../types-supabase";
 import { supabase } from "../supabaseClient";
-import { PostgrestResponse } from "@supabase/postgrest-js";
 import { FIRST_EPISODE_DATE } from "../constants";
 import { generateRandomDate } from "../helper";
 
@@ -11,36 +11,39 @@ type Options = {
   limit?: number;
 };
 
-// .select(`
-//       links,
-//       title,
-//       artwork,
-//       slug,
-//       duration,
-//       chapters(
-//         title,
-//         artwork,
-//         markers(
-//           id,
-//           timestamp,
-//           rawTrack,
-//           track(
-//             id,
-//             title,
-//             path,
-//             artwork,
-//             artist(
-//               id,
-//               title
-//             )
-//           )
-//         )
-//       )
-//     `)
+const SELECT_QUERY = `
+  links,
+  title,
+  artwork,
+  slug,
+  duration,
+  chapters(
+    title,
+    artwork,
+    position,
+
+    markers(
+      id,
+      timestamp,
+      rawTrack,
+      position,
+      chapter,
+      track(
+        id,
+        title,
+        path,
+        artwork,
+        artist(
+          id,
+          title
+        )
+      )
+    )
+  )
+`;
 const defaultOptions = {
-  select:
-    "id,title,slug,artwork,content,tags,published_at,links,chapters(title,markers(id))",
-  limit: 50,
+  select: SELECT_QUERY,
+  limit: 1,
 };
 
 type Result = {
@@ -50,39 +53,7 @@ type Result = {
 
 type HookReturn = Result & {
   loading: boolean;
-};
-
-export const useShowsList = (options: Options = {}): HookReturn => {
-  const { select, limit } = Object.assign(defaultOptions, options);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [result, setResult] = useState<Result>({
-    data: undefined,
-    error: undefined,
-  });
-
-  const fetchShows = useCallback(async () => {
-    const result = await supabase
-      .from<definitions["shows"]>("shows")
-      .select(select)
-      .limit(limit)
-      .filter("profile", "eq", "QiEFFErt688")
-      .filter("state", "eq", "published")
-      .filter("tags", "ov", "{5,10,11,15}")
-      .order("published_at", { ascending: false, nullsFirst: false });
-
-    setResult(result);
-
-    setLoading(false);
-  }, [limit, select]);
-
-  useEffect(() => {
-    fetchShows();
-  }, [fetchShows]);
-
-  return {
-    ...result,
-    loading,
-  };
+  shuffleEpisode: () => Promise<void>;
 };
 
 export const useRandomShow = (options: Options = {}): HookReturn => {
@@ -96,7 +67,9 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
   /**
    * To randomly select, all we do is, choose a random date between Episode 137 and now
    */
-  const fetchShows = useCallback(async () => {
+  const fetchShow = useCallback(async () => {
+    setLoading(true);
+
     const randomDate = generateRandomDate(FIRST_EPISODE_DATE, new Date());
 
     const baseQuery = () =>
@@ -104,11 +77,13 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
         .from<definitions["shows"]>("shows")
         .select(select)
         .limit(1)
+        // NOTE: using ep 339 from Melbourne For testing
+        // .textSearch("title", "339")
         .filter("profile", "eq", "QiEFFErt688")
         .filter("state", "eq", "published")
         .filter("tags", "ov", "{5,10,11,15}");
 
-    const result = await baseQuery()
+    let result = await baseQuery()
       .order("published_at", {
         ascending: true,
         nullsFirst: false,
@@ -117,12 +92,14 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
 
     // Flip the logic if that fails
     if (!result.data || result.data?.length < 1)
-      await baseQuery()
+      result = await baseQuery()
         .order("published_at", { ascending: false, nullsFirst: false })
         .filter("published_at", "lte", randomDate.toISOString());
 
-    if (!result.data || result.data?.length < 1)
+    if (!result.data || result.data?.length < 1) {
+      console.error({ result });
       throw new Error("Could not find an episode to play!");
+    }
 
     setResult(result);
 
@@ -130,11 +107,12 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
   }, [select]);
 
   useEffect(() => {
-    fetchShows();
-  }, [fetchShows]);
+    fetchShow();
+  }, [fetchShow]);
 
   return {
     ...result,
     loading,
+    shuffleEpisode: fetchShow,
   };
 };
