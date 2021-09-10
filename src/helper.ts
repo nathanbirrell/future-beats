@@ -1,4 +1,14 @@
-import { addHours, getMinutes, getHours, getSeconds } from "date-fns";
+import {
+  addHours,
+  getMinutes,
+  getHours,
+  getSeconds,
+  parseISO,
+  formatRelative,
+  format,
+  differenceInDays,
+  formatDistance,
+} from "date-fns";
 
 const BASE_URL = "https://soulection.com";
 const EPISODE_LINK = "tracklists";
@@ -37,6 +47,18 @@ export const getShowLinks = (show: Omit<Show, "chapters"> | undefined) => {
     }),
   ];
 };
+
+export function relativeDateIfRecent(inputString: string) {
+  const input = parseISO(inputString);
+  const now = new Date();
+  const daysAgo = differenceInDays(input, now);
+
+  if (daysAgo > -14 && daysAgo <= 0)
+    return formatDistance(input, now, { addSuffix: true });
+
+  const result = format(input, "MMMM d yyyy");
+  return result;
+}
 
 export function generateRandomDate(start: Date, end: Date) {
   return new Date(

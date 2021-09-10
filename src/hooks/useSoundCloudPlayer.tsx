@@ -71,8 +71,10 @@ export const useSoundCloudPlayer = ({ id }: Options) => {
     }
   };
 
-  const skipForward = () => navigate({ direction: "forward" });
-  const skipBack = () => navigate({ direction: "backward" });
+  const skipForward = (amountMs = 30 * 1000) =>
+    navigate({ direction: "forward", amountMs });
+  const skipBack = (amountMs = 30 * 1000) =>
+    navigate({ direction: "backward", amountMs });
 
   return {
     playerState: {

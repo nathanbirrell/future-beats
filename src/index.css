@@ -13,3 +13,16 @@
     @apply underline;
   }
 }
+
+.cover-art {
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+}
+@screen md {
+  .cover-art {
+    padding: 0;
+    height: 28rem;
+    width: 28rem;
+  }
+}

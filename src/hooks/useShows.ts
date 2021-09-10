@@ -17,6 +17,7 @@ const SELECT_QUERY = `
   artwork,
   slug,
   duration,
+  published_at,
   chapters(
     title,
     artwork,

@@ -69,25 +69,48 @@ export const RadioPlayer = (props: Props) => {
   useEffect(() => {
     if (!continuousPlay) return;
     if (!position || !duration) return;
-    if (position < duration) return;
-
-    if (position >= duration) shuffleEpisode && shuffleEpisode();
+    // if (position < duration) return;
+    if (position >= duration - 2000) shuffleEpisode && shuffleEpisode();
   }, [continuousPlay, position, duration, shuffleEpisode]);
 
   return (
     <Fragment>
       {/* TODO: abstract into RadioControls component */}
-      <div className="flex-initial text-4xl mb-12">
-        <button className="rounded-sm  px-2" onClick={toggleContinousPlay}>
+      <div className="flex-initial text-4xl mb-6">
+        <button
+          className="rounded-sm  px-2"
+          onClick={toggleContinousPlay}
+          title={`${
+            continuousPlay
+              ? "Switch Off Continuous Play"
+              : "Switch On Continuous Play"
+          }`}
+        >
           {continuousPlay ? "♾" : "OFF"}
         </button>
-        <button className="rounded-sm  px-2" onClick={skipBack}>
+        <button
+          className="rounded-sm  px-2"
+          onClick={() => skipBack()}
+          // Jump a bit quicker
+          onDoubleClick={() => skipBack(60 * 1000)}
+          title="Rewind 30sec"
+        >
           {"⏪"}
         </button>
-        <button className="px-2" onClick={togglePlay}>
+        <button
+          className="px-2"
+          onClick={togglePlay}
+          title={playing ? "Pause" : "Play"}
+        >
           {playing ? "⏸" : "▶️"}
         </button>
-        <button className="rounded-sm  px-2" onClick={skipForward}>
+        <button
+          className="rounded-sm  px-2"
+          onClick={() => skipForward()}
+          // Jump a bit quicker
+          onDoubleClick={() => skipForward(60 * 1000)}
+          title="Forward 30sec"
+        >
           {"⏩"}
         </button>
         {shuffleEpisode && (
@@ -101,7 +124,7 @@ export const RadioPlayer = (props: Props) => {
         )}
       </div>
 
-      <div>
+      <div className="mb-6 text-sm">
         <p
           title={`${millisecondsToDuration(
             duration - position
@@ -112,8 +135,8 @@ export const RadioPlayer = (props: Props) => {
         </p>
       </div>
 
-      <div>
-        <p className="text-sm uppercase tracking-wider opacity-70">
+      <div className="text-sm">
+        <p className="text-xs uppercase tracking-wider opacity-70">
           Now Playing:
         </p>
         <p>{currentTrack}</p>
