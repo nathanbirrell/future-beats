@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useMemo, useState } from "react";
+import { useKey } from "react-use";
 import { RADIO_PLAYER_ID } from "../constants";
 import {
   durationStringToMilliseconds,
@@ -66,6 +67,7 @@ export const RadioPlayer = (props: Props) => {
 
   const [continuousPlay, setContinuousPlay] = useState(true);
   const toggleContinousPlay = () => setContinuousPlay(!continuousPlay);
+
   // Listen to position value and play next ep on completion
   useEffect(() => {
     if (!continuousPlay) return;
@@ -73,6 +75,11 @@ export const RadioPlayer = (props: Props) => {
     // if (position < duration) return;
     if (position >= duration - 2000) shuffleEpisode && shuffleEpisode();
   }, [continuousPlay, position, duration, shuffleEpisode]);
+
+  useKey("ArrowUp", shuffleEpisode);
+  useKey("ArrowRight", () => skipForward(), undefined, [skipForward]);
+  useKey("ArrowLeft", () => skipBack(), undefined, [skipBack]);
+  useKey(" ", () => togglePlay(), undefined, [togglePlay]);
 
   return (
     <Fragment>
@@ -94,7 +101,7 @@ export const RadioPlayer = (props: Props) => {
           )} remaining (${Math.round((position / duration) * 100)}%)`}
         >
           {millisecondsToDuration(position)}
-          {duration && ` of ${millisecondsToDuration(duration)}`}
+          {duration > 0 && ` of ${millisecondsToDuration(duration)}`}
         </p>
       </div>
 
@@ -111,7 +118,8 @@ export const RadioPlayer = (props: Props) => {
         // to keep it playing between skips, we leverage playerState.playing and feed it to `autoplay` prop below
         // TODO: look into using the widget.load() when skipping tracks instead of unmount/remount drama
         // https://developers.soundcloud.com/docs/api/html5-widget#methods
-        autoplay={playing}
+        // UPDATE: turns out this breaks play/pause functionality so we'll come back to this..
+        // autoplay={playing}
       />
     </Fragment>
   );

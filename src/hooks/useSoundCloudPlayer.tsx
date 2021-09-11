@@ -8,6 +8,9 @@ interface Options {
 
 const UPDATE_POSITION_FREQUENCY = 1000;
 
+/**
+ * React Hook to interface with HiddenSoundCloudPlayer (SC Widget)
+ */
 export const useSoundCloudPlayer = ({ id }: Options) => {
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);
