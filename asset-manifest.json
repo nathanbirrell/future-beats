@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/future-beats/static/css/main.cd5a38dd.chunk.css",
+    "main.js": "/future-beats/static/js/main.dd421f69.chunk.js",
+    "main.js.map": "/future-beats/static/js/main.dd421f69.chunk.js.map",
+    "runtime-main.js": "/future-beats/static/js/runtime-main.91847f9e.js",
+    "runtime-main.js.map": "/future-beats/static/js/runtime-main.91847f9e.js.map",
+    "static/js/2.dbe2ffc2.chunk.js": "/future-beats/static/js/2.dbe2ffc2.chunk.js",
+    "static/js/2.dbe2ffc2.chunk.js.map": "/future-beats/static/js/2.dbe2ffc2.chunk.js.map",
+    "static/js/3.786f21c6.chunk.js": "/future-beats/static/js/3.786f21c6.chunk.js",
+    "static/js/3.786f21c6.chunk.js.map": "/future-beats/static/js/3.786f21c6.chunk.js.map",
+    "index.html": "/future-beats/index.html",
+    "static/css/main.cd5a38dd.chunk.css.map": "/future-beats/static/css/main.cd5a38dd.chunk.css.map",
+    "static/js/2.dbe2ffc2.chunk.js.LICENSE.txt": "/future-beats/static/js/2.dbe2ffc2.chunk.js.LICENSE.txt",
+    "static/media/continuous-play-active.353bedf4.svg": "/future-beats/static/media/continuous-play-active.353bedf4.svg",
+    "static/media/continuous-play.8afd66e5.svg": "/future-beats/static/media/continuous-play.8afd66e5.svg",
+    "static/media/fallback-art.c026f5ef.webp": "/future-beats/static/media/fallback-art.c026f5ef.webp",
+    "static/media/fast-forward.ec7eb4e6.svg": "/future-beats/static/media/fast-forward.ec7eb4e6.svg",
+    "static/media/logo.0929b6ec.svg": "/future-beats/static/media/logo.0929b6ec.svg",
+    "static/media/pause.b74c4048.svg": "/future-beats/static/media/pause.b74c4048.svg",
+    "static/media/play.1f6e77eb.svg": "/future-beats/static/media/play.1f6e77eb.svg",
+    "static/media/rewind.cee07cdb.svg": "/future-beats/static/media/rewind.cee07cdb.svg",
+    "static/media/shuffle.c74ef249.svg": "/future-beats/static/media/shuffle.c74ef249.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.91847f9e.js",
+    "static/js/2.dbe2ffc2.chunk.js",
+    "static/css/main.cd5a38dd.chunk.css",
+    "static/js/main.dd421f69.chunk.js"
+  ]
+}
