@@ -8,6 +8,7 @@ import {
   useSoundCloudPlayer,
   HiddenSoundCloudPlayer,
 } from "../hooks/useSoundCloudPlayer";
+import { RadioPlayerControls } from "./RadioPlayerControls";
 
 interface Props {
   link: string;
@@ -75,54 +76,16 @@ export const RadioPlayer = (props: Props) => {
 
   return (
     <Fragment>
-      {/* TODO: abstract into RadioControls component */}
-      <div className="flex-initial text-4xl mb-6">
-        <button
-          className="rounded-sm  px-2"
-          onClick={toggleContinousPlay}
-          title={`${
-            continuousPlay
-              ? "Switch Off Continuous Play"
-              : "Switch On Continuous Play"
-          }`}
-        >
-          {continuousPlay ? "♾" : "OFF"}
-        </button>
-        <button
-          className="rounded-sm  px-2"
-          onClick={() => skipBack()}
-          // Jump a bit quicker
-          onDoubleClick={() => skipBack(60 * 1000)}
-          title="Rewind 30sec"
-        >
-          {"⏪"}
-        </button>
-        <button
-          className="px-2"
-          onClick={togglePlay}
-          title={playing ? "Pause" : "Play"}
-        >
-          {playing ? "⏸" : "▶️"}
-        </button>
-        <button
-          className="rounded-sm  px-2"
-          onClick={() => skipForward()}
-          // Jump a bit quicker
-          onDoubleClick={() => skipForward(60 * 1000)}
-          title="Forward 30sec"
-        >
-          {"⏩"}
-        </button>
-        {shuffleEpisode && (
-          <button
-            className="rounded-sm  px-2"
-            onClick={shuffleEpisode}
-            disabled={loading}
-          >
-            {"🔀"}
-          </button>
-        )}
-      </div>
+      <RadioPlayerControls
+        playing={playing}
+        continuousPlaying={continuousPlay}
+        onContinuousPlayClick={toggleContinousPlay}
+        onPlayClick={togglePlay}
+        onRewindClick={() => skipBack()}
+        onFastForwardClick={() => skipForward()}
+        onShuffleClick={shuffleEpisode}
+        loading={loading}
+      />
 
       <div className="mb-6 text-sm">
         <p

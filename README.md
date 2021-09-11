@@ -22,3 +22,17 @@ REACT_APP_SOULECTION_BASE_URL=https://soulection.com/
 # Can't put this into package.json due to env variables
 npx openapi-typescript $SUPABASE_OPENAPI_URL  --output src/types-supabase.d.ts --version 2
 ```
+
+## Adding new SVG icons
+
+Optimise your files:
+
+```bash
+npx svgo -f ~/path/to/input/files ./src/icons
+```
+
+Import in a component:
+
+```ts
+import { ReactComponent as MyIcon } from "./icons/myicon.svg";
+```
