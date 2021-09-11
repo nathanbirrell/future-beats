@@ -6,6 +6,7 @@ import { RadioPlayer } from "./components/RadioPlayer";
 import { getShowLinks, imageLink, relativeDateIfRecent } from "./helper";
 import { useRandomShow } from "./hooks/useShows";
 import { ReactComponent as Logo } from "./icons/logo.svg";
+import fallbackArt from "./images/fallback-art.webp";
 
 const App = () => {
   const query = useRandomShow();
@@ -15,10 +16,11 @@ const App = () => {
 
   console.log({ show });
 
-  const imageSrc = show?.artwork
+  const imageSrc = loading
+    ? undefined
+    : show?.artwork
     ? imageLink(show.artwork)
-    : // FIXME: find a nice fallback album art
-      "https://placehold.it/400x400";
+    : fallbackArt;
 
   const links = getShowLinks(show);
 
@@ -36,10 +38,10 @@ const App = () => {
             {show && (
               <Fragment>
                 <div className="my-4 lg:mt-12">
-                  <div className="cover-art object-cover pointer-events-none">
-                    {show?.artwork && (
+                  <div className="cover-art  pointer-events-none">
+                    {imageSrc && (
                       <img
-                        className="w-full h-full rounded-md"
+                        className="w-full h-full object-cover rounded-md"
                         src={imageSrc}
                         alt={show.title}
                         title={show.title}

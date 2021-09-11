@@ -5,7 +5,6 @@ import { ReactComponent as PauseIcon } from "../icons/pause.svg";
 import { ReactComponent as RewindIcon } from "../icons/rewind.svg";
 import { ReactComponent as FastForwardIcon } from "../icons/fast-forward.svg";
 import { ReactComponent as ShuffleIcon } from "../icons/shuffle.svg";
-import { Fragment } from "react";
 
 type Props = {
   playing?: boolean;
