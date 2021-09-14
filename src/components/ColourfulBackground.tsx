@@ -32,7 +32,7 @@ export const ColourfulBackground = ({
             {...props}
           />
           <img
-            className="image"
+            className="image image-static"
             alt="" // Screen reader hidden
             {...props}
           />
