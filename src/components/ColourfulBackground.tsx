@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useCallback, useEffect, useState } from "react";
 import "./ColourfulBackground.css";
 
 export const ColourfulBackground = ({
@@ -6,20 +6,30 @@ export const ColourfulBackground = ({
   ...props
 }: React.ImgHTMLAttributes<HTMLImageElement>) => {
   const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    document.body.classList.add("text-white");
+
+    return () => document.body.classList.remove("text-white");
+  }, []);
+
+  const onImgLoad = useCallback(() => setLoaded(true), [setLoaded]);
+
   return (
-    <div className="colourful-bg">
-      <div className={`${loaded ? "hidden" : "bg-fallback"}`}></div>
+    <div className={`colourful-background ${loaded ? "loaded" : ""}`}>
+      <div className="colours"></div>
       {!!props.src && (
         <Fragment>
           <img
+            className="image-1"
             alt="" // Screen reader hidden
-            className={`${loaded ? "bg-one" : "hidden"} ${className}`}
-            onLoad={() => setLoaded(true)}
+            onLoad={onImgLoad}
             {...props}
           />
           <img
+            className="image-2"
             alt="" // Screen reader hidden
-            className={`${loaded ? "bg-two" : "hidden"} ${className}`}
+            onLoad={onImgLoad}
             {...props}
           />
           {/* <img

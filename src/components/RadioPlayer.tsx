@@ -1,5 +1,5 @@
 import React, { Fragment, useEffect, useMemo, useState } from "react";
-import { useKey } from "react-use";
+import { useKey, useKeyPressEvent } from "react-use";
 import { RADIO_PLAYER_ID } from "../constants";
 import {
   durationStringToMilliseconds,
@@ -26,7 +26,11 @@ export const RadioPlayer = (props: Props) => {
     skipBack,
     skipForward,
     togglePlay,
-  } = useSoundCloudPlayer({ id: RADIO_PLAYER_ID });
+  } = useSoundCloudPlayer({
+    id: RADIO_PLAYER_ID,
+    url: link,
+    onFinished: shuffleEpisode,
+  });
 
   // const [currentTrack, setCurrentTrack] = useState(show.title || "Soulection Radio");
   const currentTrack = useMemo(() => {
@@ -68,18 +72,27 @@ export const RadioPlayer = (props: Props) => {
   const [continuousPlay, setContinuousPlay] = useState(true);
   const toggleContinousPlay = () => setContinuousPlay(!continuousPlay);
 
+  // NOTE: Now using onFinished in hook
   // Listen to position value and play next ep on completion
-  useEffect(() => {
-    if (!continuousPlay) return;
-    if (!position || !duration) return;
-    // if (position < duration) return;
-    if (position >= duration - 2000) shuffleEpisode && shuffleEpisode();
-  }, [continuousPlay, position, duration, shuffleEpisode]);
+  // useEffect(() => {
+  //   if (!continuousPlay) return;
+  //   if (!position || !duration) return;
+  //   // if (position < duration) return;
+  //   if (position >= duration - 2000) shuffleEpisode && shuffleEpisode();
+  // }, [continuousPlay, position, duration, shuffleEpisode]);
 
-  useKey("ArrowUp", shuffleEpisode);
-  useKey("ArrowRight", () => skipForward(), undefined, [skipForward]);
-  useKey("ArrowLeft", () => skipBack(), undefined, [skipBack]);
-  useKey(" ", () => togglePlay(), undefined, [togglePlay]);
+  const preventScroll = (event: KeyboardEvent) => {
+    if (event.key === " " && event.target === document.body)
+      event.preventDefault(); // stop scrolling
+  };
+
+  useKeyPressEvent("ArrowRight", () => skipForward());
+  useKeyPressEvent("ArrowLeft", () => skipBack());
+  useKeyPressEvent("]", () => skipForward(10 * 60 * 1000));
+  useKeyPressEvent("[", () => skipBack(10 * 60 * 1000));
+  useKeyPressEvent("ArrowUp", shuffleEpisode);
+  useKeyPressEvent(" ", togglePlay);
+  useKey(" ", preventScroll);
 
   return (
     <Fragment>
@@ -111,16 +124,6 @@ export const RadioPlayer = (props: Props) => {
         </p>
         <p>{currentTrack}</p>
       </div>
-
-      <HiddenSoundCloudPlayer
-        id={RADIO_PLAYER_ID}
-        link={link}
-        // to keep it playing between skips, we leverage playerState.playing and feed it to `autoplay` prop below
-        // TODO: look into using the widget.load() when skipping tracks instead of unmount/remount drama
-        // https://developers.soundcloud.com/docs/api/html5-widget#methods
-        // UPDATE: turns out this breaks play/pause functionality so we'll come back to this..
-        // autoplay={playing}
-      />
     </Fragment>
   );
 };
