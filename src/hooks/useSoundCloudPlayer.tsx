@@ -1,49 +1,71 @@
-import { useEffect, useRef, useState } from "react";
-import { useIntervalRunner } from "./useIntervalRunner";
+import {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  createContext,
+  useContext,
+} from "react";
+
+// TODO: handle SC.Widget.Events.ERROR
+
+/**
+ * React Hook to interface with PlayerIframe (SC Widget)
+ */
+export const useSoundCloudPlayer = () =>
+  useContext(SoundCloudPlayerContext) as ContextShape;
 
 interface Options {
   // ID of the iframe we want to control
   id: string;
-  url: string;
-  onFinished?: () => void;
+  url?: string;
+  nextTrackCallback?: () => Promise<void>;
 }
 
-const UPDATE_POSITION_FREQUENCY = 1000;
+type ContextShape = ReturnType<typeof useSoundCloudPlayerInternal>;
 
-/**
- * React Hook to interface with HiddenSoundCloudPlayer (SC Widget)
- */
-export const useSoundCloudPlayer = ({ id, url, onFinished }: Options) => {
-  // const [loading, setLoading] = useState(false);
+const SoundCloudPlayerContext = createContext<ContextShape | undefined>(
+  undefined
+);
+
+export const SoundCloudPlayerProvider: React.FC<Options> = ({
+  children,
+  id,
+  url,
+  nextTrackCallback,
+}) => {
+  const value = useSoundCloudPlayerInternal({ id, url, nextTrackCallback });
+
+  return (
+    <SoundCloudPlayerContext.Provider value={value}>
+      {children}
+
+      {url && <PlayerIframe id={id} link={url} />}
+    </SoundCloudPlayerContext.Provider>
+  );
+};
+
+export const useSoundCloudPlayerInternal = ({
+  id,
+  nextTrackCallback,
+}: Options) => {
+  const [loading, setLoading] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
 
   let widget = useRef<SoundCloudWidget>(undefined);
 
-  useEffect(() => {
-    widget.current = window.SC.Widget(id);
+  const play = useCallback(
+    () => widget.current && widget.current.play(),
+    [widget]
+  );
+  const pause = useCallback(
+    () => widget.current && widget.current.pause(),
+    [widget]
+  );
 
-    widget.current.bind(window.SC.Widget.Events.PLAY, () => setPlaying(true));
-    widget.current.bind(window.SC.Widget.Events.PAUSE, () => setPlaying(false));
-    widget.current.bind(window.SC.Widget.Events.FINISH, onFinished);
-  }, [id, onFinished]);
-
-  // useEffect(() => {
-  //   if (!widget || !widget.current) return;
-
-  //   widget.current.load(url, {
-  //     autoplay: playing,
-  //     callback: () => setLoading(false),
-  //   });
-  // }, [url, widget, setLoading, playing]);
-
-  const play = () =>
-    widget.current && widget.current.play() && setPlaying(true);
-  const pause = () =>
-    widget.current && widget.current.pause() && setPlaying(false);
-
-  const togglePlay = () => {
+  const togglePlay = useCallback(() => {
     try {
       if (!widget.current) throw new Error("No player!");
 
@@ -51,9 +73,45 @@ export const useSoundCloudPlayer = ({ id, url, onFinished }: Options) => {
     } catch (error) {
       console.error(error);
     }
-  };
+  }, [widget, playing, pause, play]);
 
-  const updatePosition = () => {
+  const nextTrack = useCallback(async () => {
+    if (!nextTrackCallback) return;
+
+    pause();
+    await nextTrackCallback();
+    play();
+  }, [play, pause, nextTrackCallback]);
+
+  useEffect(() => {
+    widget.current = window.SC.Widget(id);
+  }, [id]);
+
+  useEffect(() => {
+    if (!widget.current) return;
+
+    widget.current.bind(window.SC.Widget.Events.READY, () => setLoading(false));
+    widget.current.bind(window.SC.Widget.Events.PLAY, () => setPlaying(true));
+    widget.current.bind(window.SC.Widget.Events.PAUSE, () => setPlaying(false));
+
+    return () => {
+      widget.current.unbind(window.SC.Widget.Events.READY);
+      widget.current.unbind(window.SC.Widget.Events.PLAY);
+      widget.current.unbind(window.SC.Widget.Events.PAUSE);
+    };
+  }, [widget]);
+
+  useEffect(() => {
+    if (!widget.current) return;
+
+    widget.current.bind(window.SC.Widget.Events.FINISH, nextTrackCallback);
+
+    return () => {
+      widget.current.unbind(window.SC.Widget.Events.FINISH);
+    };
+  }, [widget, nextTrackCallback]);
+
+  const updatePosition = useCallback(() => {
     if (!widget || !widget.current) return;
 
     // Update position value
@@ -66,9 +124,30 @@ export const useSoundCloudPlayer = ({ id, url, onFinished }: Options) => {
     widget.current.getDuration(
       (duration: number) => duration && setDuration(duration)
     );
-  };
+  }, [widget]);
 
-  useIntervalRunner(updatePosition, UPDATE_POSITION_FREQUENCY);
+  useEffect(() => {
+    if (!widget.current) return;
+
+    widget.current.bind(window.SC.Widget.Events.SEEK, updatePosition);
+    widget.current.bind(window.SC.Widget.Events.PLAY_PROGRESS, updatePosition);
+
+    return () => {
+      widget.current.unbind(window.SC.Widget.Events.SEEK);
+      widget.current.unbind(window.SC.Widget.Events.PLAY_PROGRESS);
+    };
+  }, [widget, updatePosition]);
+
+  // useEffect(() => {
+  //   widget.current.bind(window.SC.Widget.Events.READY, () => {
+  //     if (loading) return;
+  //     // After initial load...
+  //     console.log("// After initial load...");
+  //     play();
+  //   });
+  // }, [widget, loading, play]);
+
+  // useIntervalRunner(updatePosition, UPDATE_POSITION_FREQUENCY);
 
   const navigate = (options: {
     direction: "forward" | "backward";
@@ -100,6 +179,7 @@ export const useSoundCloudPlayer = ({ id, url, onFinished }: Options) => {
       playing,
       position,
       duration,
+      loading,
     },
     togglePlay,
     play,
@@ -107,6 +187,7 @@ export const useSoundCloudPlayer = ({ id, url, onFinished }: Options) => {
     navigate,
     skipBack,
     skipForward,
+    nextTrack,
   };
 };
 
@@ -130,18 +211,14 @@ export const showIframe: React.HTMLAttributes<HTMLIFrameElement>["style"] = {
   height: "260px",
 };
 
-type Props = React.HTMLAttributes<HTMLIFrameElement> & {
+type iFrameProps = React.HTMLAttributes<HTMLIFrameElement> & {
   id: string;
   link: string;
 };
 
-export const HiddenSoundCloudPlayer = ({ id, link, ...props }: Props) => {
+const PlayerIframe = ({ id, link, ...props }: iFrameProps) => {
   // ie https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsoulection%2Fsoulection-radio-show-520-andres-javier-uribe-takeover&amp;auto_play=true&amp;buying=false&amp;download=false&amp;hide_related=true&amp;sharing=false&amp;show_artwork=false&amp;show_comments=false&amp;show_playcount=false&amp;show_reposts=false&amp;show_teaser=false&amp;show_user=true
   const widgetLink = link ? buildScWidgetSrc(link) : "";
-
-  console.debug(widgetLink);
-
-  console.debug({ id, link, widgetLink });
 
   if (!widgetLink) return null;
 
@@ -154,24 +231,11 @@ export const HiddenSoundCloudPlayer = ({ id, link, ...props }: Props) => {
       scrolling="no"
       allow="autoplay"
       src={widgetLink}
-      style={hideIframe}
-      // style={showIframe}
+      // style={hideIframe}
+      style={showIframe}
       {...props}
     ></iframe>
   );
 };
-
 const buildScWidgetSrc = (link: string) =>
   `https://w.soundcloud.com/player/?url=${encodeURIComponent(link)}`;
-
-// const extraScUrlConfig =
-//   "&hide_related=true" +
-//   "&show_user=true" +
-//   "&show_comments=false" +
-//   "&show_reposts=false" +
-//   "&show_teaser=false" +
-//   "&visual=false" +
-//   "&show_artwork=false" +
-//   "&download=false" +
-//   "&sharing=false" +
-// "&show_playcount=false";

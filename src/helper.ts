@@ -114,3 +114,8 @@ export const durationStringToMilliseconds = (durationString: string) => {
 
   return duration;
 };
+
+export const preventScroll = (event: KeyboardEvent) => {
+  if (event.key === " " && event.target === document.body)
+    event.preventDefault(); // stop scrolling
+};
