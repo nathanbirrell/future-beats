@@ -14,6 +14,24 @@
   }
 }
 
+html {
+  height: -webkit-fill-available;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  /* iOS mobile viewport bug fix */
+  min-height: -webkit-fill-available;
+}
+
+#future-beats-wrapper {
+  height: 100vh;
+  width: 100vw;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
 .cover-art {
   width: 100%;
   height: 100%;

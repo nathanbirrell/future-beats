@@ -23,9 +23,9 @@ const App = () => {
   const links = getShowLinks(show);
 
   return (
-    <Fragment>
+    <div id="future-beats-wrapper">
       <div className="container max-w-md mx-auto flex justify-center justify-items-center text-center">
-        <div className="w-full flex flex-col justify-between md:h-screen">
+        <div className="w-full flex flex-col justify-between xl:h-screen">
           <header className="my-4 lg:my-12 flex justify-center">
             {!loading && <Logo className="text-xl" />}
 
@@ -92,8 +92,7 @@ const App = () => {
           <footer className="pt-8 pb-4">
             <p className="text-xs opacity-90">
               <span>
-                Made with ☕️ and Future Beats in Melbourne, Australia.
-                Contribute at{" "}
+                Made with ☕️ in Melbourne, Australia. Contribute on{" "}
                 <a
                   href={process.env.REACT_APP_PROJECT_URL}
                   title="Future Beats Project on Github"
@@ -109,6 +108,7 @@ const App = () => {
             </p>
           </footer>
         </div>
+        {imageSrc && <ColourfulBackground src={imageSrc} />}
       </div>
 
       <HiddenSoundCloudPlayer
@@ -120,9 +120,7 @@ const App = () => {
         // UPDATE: turns out this breaks play/pause functionality so we'll come back to this..
         // autoplay={playing}
       />
-
-      {imageSrc && <ColourfulBackground src={imageSrc} />}
-    </Fragment>
+    </div>
   );
 };
 

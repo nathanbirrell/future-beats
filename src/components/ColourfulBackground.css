@@ -31,8 +31,8 @@ body {
   z-index: -2;
 
   filter: blur(3rem);
-  opacity: 75%;
-  mix-blend-mode: luminousity;
+  opacity: 0.75;
+  /* mix-blend-mode: luminosity; */
 }
 
 .colourful-background.loaded .image-animated {
