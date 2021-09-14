@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/future-beats/static/css/main.cd5a38dd.chunk.css",
-    "main.js": "/future-beats/static/js/main.dd421f69.chunk.js",
-    "main.js.map": "/future-beats/static/js/main.dd421f69.chunk.js.map",
-    "runtime-main.js": "/future-beats/static/js/runtime-main.91847f9e.js",
-    "runtime-main.js.map": "/future-beats/static/js/runtime-main.91847f9e.js.map",
-    "static/js/2.dbe2ffc2.chunk.js": "/future-beats/static/js/2.dbe2ffc2.chunk.js",
-    "static/js/2.dbe2ffc2.chunk.js.map": "/future-beats/static/js/2.dbe2ffc2.chunk.js.map",
-    "static/js/3.786f21c6.chunk.js": "/future-beats/static/js/3.786f21c6.chunk.js",
-    "static/js/3.786f21c6.chunk.js.map": "/future-beats/static/js/3.786f21c6.chunk.js.map",
+    "main.css": "/future-beats/static/css/main.94d73b8a.chunk.css",
+    "main.js": "/future-beats/static/js/main.3a0baf3a.chunk.js",
+    "main.js.map": "/future-beats/static/js/main.3a0baf3a.chunk.js.map",
+    "runtime-main.js": "/future-beats/static/js/runtime-main.7ae1c055.js",
+    "runtime-main.js.map": "/future-beats/static/js/runtime-main.7ae1c055.js.map",
+    "static/js/2.ea8e78ca.chunk.js": "/future-beats/static/js/2.ea8e78ca.chunk.js",
+    "static/js/2.ea8e78ca.chunk.js.map": "/future-beats/static/js/2.ea8e78ca.chunk.js.map",
+    "static/js/3.4b1a0c03.chunk.js": "/future-beats/static/js/3.4b1a0c03.chunk.js",
+    "static/js/3.4b1a0c03.chunk.js.map": "/future-beats/static/js/3.4b1a0c03.chunk.js.map",
     "index.html": "/future-beats/index.html",
-    "static/css/main.cd5a38dd.chunk.css.map": "/future-beats/static/css/main.cd5a38dd.chunk.css.map",
-    "static/js/2.dbe2ffc2.chunk.js.LICENSE.txt": "/future-beats/static/js/2.dbe2ffc2.chunk.js.LICENSE.txt",
+    "static/css/main.94d73b8a.chunk.css.map": "/future-beats/static/css/main.94d73b8a.chunk.css.map",
+    "static/js/2.ea8e78ca.chunk.js.LICENSE.txt": "/future-beats/static/js/2.ea8e78ca.chunk.js.LICENSE.txt",
     "static/media/continuous-play-active.353bedf4.svg": "/future-beats/static/media/continuous-play-active.353bedf4.svg",
     "static/media/continuous-play.8afd66e5.svg": "/future-beats/static/media/continuous-play.8afd66e5.svg",
     "static/media/fallback-art.c026f5ef.webp": "/future-beats/static/media/fallback-art.c026f5ef.webp",
@@ -23,9 +23,9 @@
     "static/media/shuffle.c74ef249.svg": "/future-beats/static/media/shuffle.c74ef249.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.91847f9e.js",
-    "static/js/2.dbe2ffc2.chunk.js",
-    "static/css/main.cd5a38dd.chunk.css",
-    "static/js/main.dd421f69.chunk.js"
+    "static/js/runtime-main.7ae1c055.js",
+    "static/js/2.ea8e78ca.chunk.js",
+    "static/css/main.94d73b8a.chunk.css",
+    "static/js/main.3a0baf3a.chunk.js"
   ]
 }
