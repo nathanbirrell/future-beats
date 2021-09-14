@@ -21,27 +21,52 @@ body {
 .colourful-background.loaded {
   width: 100%;
   height: 100%;
-  background-color: black;
   animation: fadeIn 300ms ease-in;
 }
 
-.colourful-background.loaded img {
+.colourful-background.loaded .image {
+  position: absolute;
   width: 100%;
   height: 100%;
+  z-index: -2;
 
-  filter: blur(4rem);
-  mix-blend-mode: difference;
+  filter: blur(3rem);
   opacity: 75%;
+  mix-blend-mode: luminousity;
 }
 
-.image-1 {
+.colourful-background.loaded .image-animated {
+  border-radius: 30%;
+  z-index: -1;
+
+  animation-duration: 60s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
 }
 
-.image-2 {
-  transform: scaleX(-1) scaleY(-1);
+.colourful-background.loaded .image-1 {
+  animation-name: spinning;
+  animation-direction: alternate-reverse;
+  top: -30%;
 }
 
-@keyframes rotate {
+.colourful-background.loaded .image-2 {
+  animation-name: spinning;
+  animation-delay: 5s;
+  bottom: -30%;
+}
+
+.dark-overlay {
+  width: 100%;
+  height: 100%;
+  background: black;
+  z-index: -1;
+  position: absolute;
+  mix-blend-mode: multiply;
+}
+
+@keyframes spinning {
   0% {
     transform: rotate(0deg);
   }

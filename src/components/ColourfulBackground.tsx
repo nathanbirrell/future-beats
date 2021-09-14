@@ -17,26 +17,25 @@ export const ColourfulBackground = ({
 
   return (
     <div className={`colourful-background ${loaded ? "loaded" : ""}`}>
-      <div className="colours"></div>
+      <div className="dark-overlay"></div>
       {!!props.src && (
         <Fragment>
           <img
-            className="image-1"
+            className="image image-animated image-1"
             alt="" // Screen reader hidden
             onLoad={onImgLoad}
             {...props}
           />
           <img
-            className="image-2"
+            className="image image-animated image-2"
             alt="" // Screen reader hidden
-            onLoad={onImgLoad}
             {...props}
           />
-          {/* <img
+          <img
+            className="image"
             alt="" // Screen reader hidden
-            className={`bg-three ${className}`}
             {...props}
-          /> */}
+          />
         </Fragment>
       )}
     </div>

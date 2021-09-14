@@ -39,7 +39,7 @@ const App = () => {
                   <div className="cover-art  pointer-events-none">
                     {imageSrc && (
                       <img
-                        className="w-full h-full object-cover rounded-md"
+                        className="w-full h-full object-cover rounded-md filter drop-shadow-md"
                         src={imageSrc}
                         alt={show.title}
                         title={show.title}
