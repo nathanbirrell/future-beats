@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/future-beats/static/css/main.1f32f40b.chunk.css",
-    "main.js": "/future-beats/static/js/main.b0c0bd72.chunk.js",
-    "main.js.map": "/future-beats/static/js/main.b0c0bd72.chunk.js.map",
+    "main.css": "/future-beats/static/css/main.5a952151.chunk.css",
+    "main.js": "/future-beats/static/js/main.6476bad0.chunk.js",
+    "main.js.map": "/future-beats/static/js/main.6476bad0.chunk.js.map",
     "runtime-main.js": "/future-beats/static/js/runtime-main.7ae1c055.js",
     "runtime-main.js.map": "/future-beats/static/js/runtime-main.7ae1c055.js.map",
     "static/js/2.ea8e78ca.chunk.js": "/future-beats/static/js/2.ea8e78ca.chunk.js",
@@ -10,7 +10,7 @@
     "static/js/3.4b1a0c03.chunk.js": "/future-beats/static/js/3.4b1a0c03.chunk.js",
     "static/js/3.4b1a0c03.chunk.js.map": "/future-beats/static/js/3.4b1a0c03.chunk.js.map",
     "index.html": "/future-beats/index.html",
-    "static/css/main.1f32f40b.chunk.css.map": "/future-beats/static/css/main.1f32f40b.chunk.css.map",
+    "static/css/main.5a952151.chunk.css.map": "/future-beats/static/css/main.5a952151.chunk.css.map",
     "static/js/2.ea8e78ca.chunk.js.LICENSE.txt": "/future-beats/static/js/2.ea8e78ca.chunk.js.LICENSE.txt",
     "static/media/continuous-play-active.353bedf4.svg": "/future-beats/static/media/continuous-play-active.353bedf4.svg",
     "static/media/continuous-play.8afd66e5.svg": "/future-beats/static/media/continuous-play.8afd66e5.svg",
@@ -25,7 +25,7 @@
   "entrypoints": [
     "static/js/runtime-main.7ae1c055.js",
     "static/js/2.ea8e78ca.chunk.js",
-    "static/css/main.1f32f40b.chunk.css",
-    "static/js/main.b0c0bd72.chunk.js"
+    "static/css/main.5a952151.chunk.css",
+    "static/js/main.6476bad0.chunk.js"
   ]
 }
