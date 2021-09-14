@@ -12,6 +12,8 @@ body {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
+
+  transform: rotateZ(360deg) translate3d(0, 0, 0);
 }
 
 .colourful-background.loaded {

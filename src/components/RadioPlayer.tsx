@@ -1,14 +1,11 @@
-import React, { Fragment, useEffect, useMemo, useState } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 import { useKey, useKeyPressEvent } from "react-use";
 import { RADIO_PLAYER_ID } from "../constants";
 import {
   durationStringToMilliseconds,
   millisecondsToDuration,
 } from "../helper";
-import {
-  useSoundCloudPlayer,
-  HiddenSoundCloudPlayer,
-} from "../hooks/useSoundCloudPlayer";
+import { useSoundCloudPlayer } from "../hooks/useSoundCloudPlayer";
 import { RadioPlayerControls } from "./RadioPlayerControls";
 
 interface Props {

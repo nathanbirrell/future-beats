@@ -9,8 +9,12 @@ export const ColourfulBackground = ({
 
   useEffect(() => {
     document.body.classList.add("text-white");
+    document.body.classList.add("bg-black");
 
-    return () => document.body.classList.remove("text-white");
+    return () => {
+      document.body.classList.remove("text-white");
+      document.body.classList.remove("bg-black");
+    };
   }, []);
 
   const onImgLoad = useCallback(() => setLoaded(true), [setLoaded]);

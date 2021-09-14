@@ -14,7 +14,7 @@ const UPDATE_POSITION_FREQUENCY = 1000;
  * React Hook to interface with HiddenSoundCloudPlayer (SC Widget)
  */
 export const useSoundCloudPlayer = ({ id, url, onFinished }: Options) => {
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);
   const [duration, setDuration] = useState(0);
@@ -27,7 +27,7 @@ export const useSoundCloudPlayer = ({ id, url, onFinished }: Options) => {
     widget.current.bind(window.SC.Widget.Events.PLAY, () => setPlaying(true));
     widget.current.bind(window.SC.Widget.Events.PAUSE, () => setPlaying(false));
     widget.current.bind(window.SC.Widget.Events.FINISH, onFinished);
-  }, [id]);
+  }, [id, onFinished]);
 
   // useEffect(() => {
   //   if (!widget || !widget.current) return;
