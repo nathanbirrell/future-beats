@@ -21,20 +21,26 @@ const App = () => {
   const imageSrc = show?.artwork ? imageLink(show.artwork) : fallbackArt;
 
   const links = getShowLinks(show);
+  const soundcloudUrl = show?.links?.soundcloud || "";
 
+  // TODO: add ErrorBoundary
   return (
-    <SoundCloudPlayerProvider id={RADIO_PLAYER_ID} url={show.links?.soundcloud}>
-      <div id="future-beats-wrapper">
-        <div className="container max-w-md mx-auto flex justify-center justify-items-center text-center">
-          <div className="w-full flex flex-col justify-between xl:h-screen">
-            <header className="my-4 lg:my-12 flex justify-center">
-              {!loading && <Logo className="text-xl" />}
+    <div id="future-beats-wrapper">
+      <div className="container max-w-md mx-auto flex justify-center justify-items-center text-center">
+        <div className="w-full flex flex-col justify-between xl:h-screen">
+          <header className="my-4 lg:my-12 flex justify-center">
+            {!loading && <Logo className="text-xl" />}
 
-              {loading && <Loading className="text-xl" />}
-            </header>
+            {loading && <Loading className="text-xl" />}
+          </header>
 
-            <main className="mb-auto">
-              {show && (
+          <main className="mb-auto">
+            {show && (
+              <SoundCloudPlayerProvider
+                id={RADIO_PLAYER_ID}
+                url={soundcloudUrl}
+                nextTrackCallback={query.shuffleEpisode}
+              >
                 <Fragment>
                   <div className="my-4 lg:mt-12">
                     <div className="cover-art  pointer-events-none">
@@ -87,33 +93,36 @@ const App = () => {
                     </div>
                   </div>
                 </Fragment>
-              )}
-            </main>
+              </SoundCloudPlayerProvider>
+            )}
+            {!show && !loading && (
+              <div className="my-4 lg:mt-12">Oh no, something went wrong.</div>
+            )}
+          </main>
 
-            <footer className="pt-8 pb-4">
-              <p className="text-xs opacity-90">
-                <span>
-                  Made with ☕️ in Melbourne, Australia. Contribute on{" "}
-                  <a
-                    href={process.env.REACT_APP_PROJECT_URL}
-                    title="Future Beats Project on Github"
-                    target="_blank"
-                    rel="noreferrer"
-                  >
-                    Github
-                  </a>
-                </span>
-                .
-                <br />
-                This app is unofficial. All rights to Soulection LLC.
-              </p>
-            </footer>
-          </div>
-
-          {imageSrc && <ColourfulBackground src={imageSrc} />}
+          <footer className="pt-8 pb-4">
+            <p className="text-xs opacity-90">
+              <span>
+                Made with ☕️ in Melbourne, Australia. Contribute on{" "}
+                <a
+                  href={process.env.REACT_APP_PROJECT_URL}
+                  title="Future Beats Project on Github"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Github
+                </a>
+              </span>
+              .
+              <br />
+              This app is unofficial. All rights to Soulection LLC.
+            </p>
+          </footer>
         </div>
+
+        {imageSrc && <ColourfulBackground src={imageSrc} />}
       </div>
-    </SoundCloudPlayerProvider>
+    </div>
   );
 };
 

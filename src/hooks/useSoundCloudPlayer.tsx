@@ -231,8 +231,8 @@ const PlayerIframe = ({ id, link, ...props }: iFrameProps) => {
       scrolling="no"
       allow="autoplay"
       src={widgetLink}
-      // style={hideIframe}
-      style={showIframe}
+      style={hideIframe}
+      // style={showIframe}
       {...props}
     ></iframe>
   );
