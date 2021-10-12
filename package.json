@@ -2,7 +2,7 @@
   "name": "future-beats",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://nathanbirrell.github.io/future-beats",
+  "homepage": "https://futurebeats.fm",
   "dependencies": {
     "@craco/craco": "^6.2.0",
     "@supabase/supabase-js": "^1.22.5",
