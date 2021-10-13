@@ -1,6 +1,18 @@
 ## Set-up your dev server
 
-Make some certs in `.ssl/*`
+Make some certs in `.ssl/*`:
+
+```bash
+
+brew install nss mkcert
+mkcert -install
+
+# Now we want to generate the cert for this project
+mkdir .ssl
+mkcert -cert-file .ssl/cert.pem -key-file .ssl/key.pem localhost "*.localhost" localhost 127.0.0.1 ::1
+```
+
+[Read more](https://geekflare.com/local-dev-environment-ssl/)
 
 Make a `.env` file:
 

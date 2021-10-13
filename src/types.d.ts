@@ -1,7 +1,5 @@
 import { definitions } from "./types-supabase";
 
-// Global types
-
 declare global {
   interface Window {
     SC: any;

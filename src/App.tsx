@@ -103,18 +103,26 @@ const App = () => {
           <footer className="pt-8 pb-4">
             <p className="text-xs opacity-90">
               <span>
-                Made with ☕️ in Melbourne, Australia. Contribute on{" "}
+                Made with ☕️ in Melbourne, Australia.{" "}
+                <a
+                  href={process.env.REACT_APP_SUPPORT_LINK}
+                  title="Buy us a coffee"
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  Support this app
+                </a>
+                .{" "}
                 <a
                   href={process.env.REACT_APP_PROJECT_URL}
                   title="Future Beats Project on Github"
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Github
+                  Contribute on Github
                 </a>
               </span>
-              .
-              <br />
+              . <br />
               This app is unofficial. All rights to Soulection LLC.
             </p>
           </footer>
