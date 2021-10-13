@@ -114,7 +114,7 @@ const App = () => {
                 </a>
                 .{" "}
                 <a
-                  href={process.env.REACT_APP_PROJECT_URL}
+                  href={process.env.REACT_APP_GITHUB_PROJECT}
                   title="Future Beats Project on Github"
                   target="_blank"
                   rel="noreferrer"
