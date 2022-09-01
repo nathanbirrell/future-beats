@@ -40,10 +40,15 @@ body {
   height: 100%;
   padding: 1rem;
 }
+
 @screen md {
   .cover-art {
     padding: 0;
     height: 28rem;
     width: 28rem;
   }
+}
+
+input:checked ~ .dot {
+  transform: translateX(100%);
 }

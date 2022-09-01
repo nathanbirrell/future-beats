@@ -95,7 +95,7 @@ export const RadioPlayer = (props: Props) => {
             loading={loading}
           />
 
-          <div className="mb-6 text-sm">
+          <div className="mt-4 mb-2 text-sm">
             <p
               title={`${millisecondsToDuration(
                 duration - position

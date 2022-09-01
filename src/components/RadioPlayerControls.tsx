@@ -22,7 +22,7 @@ const baseBtnClassNames =
 
 export const RadioPlayerControls = (props: Props) => {
   return (
-    <div className="h-12 my-8 flex items-center justify-center text-5xl md:text-6xl ">
+    <div className="h-12 mt-8 flex items-center justify-center text-5xl md:text-6xl ">
       <ContinuousPlayButton {...props} />
       <RewindButton {...props} />
       <PlayPauseButton {...props} />

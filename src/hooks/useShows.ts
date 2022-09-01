@@ -8,6 +8,7 @@ import { generateRandomDate } from "../helper";
 
 type Options = {
   select?: string;
+  show?: string; // ie: "557"
   limit?: number;
 };
 
@@ -45,6 +46,7 @@ const SELECT_QUERY = `
 const defaultOptions = {
   select: SELECT_QUERY,
   limit: 1,
+  show: undefined,
 };
 
 type Result = {
@@ -57,8 +59,8 @@ type HookReturn = Result & {
   shuffleEpisode: () => Promise<void>;
 };
 
-export const useRandomShow = (options: Options = {}): HookReturn => {
-  const { select } = Object.assign(defaultOptions, options);
+export const useShow = (options: Options = {}): HookReturn => {
+  const { select, show } = Object.assign(defaultOptions, options);
   const [loading, setLoading] = useState<boolean>(true);
   const [result, setResult] = useState<Result>({
     data: undefined,
@@ -73,18 +75,19 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
 
     const randomDate = generateRandomDate(FIRST_EPISODE_DATE, new Date());
 
-    const baseQuery = () =>
-      supabase
-        .from<definitions["shows"]>("shows")
-        .select(select)
-        .limit(1)
-        // NOTE: using ep 339 from Melbourne For testing
-        // .textSearch("title", "339")
-        .filter("profile", "eq", "QiEFFErt688")
-        .filter("state", "eq", "published")
-        .filter("tags", "ov", "{5,10,11,15}");
+    const baseQuery = supabase
+      .from<definitions["shows"]>("shows")
+      .select(select)
+      .limit(1)
+      // NOTE: using ep 339 from Melbourne For testing
+      // .textSearch("title", "339")
+      .filter("profile", "eq", "QiEFFErt688")
+      .filter("state", "eq", "published")
+      .filter("tags", "ov", "{5,10,11,15}");
 
-    let result = await baseQuery()
+    if (show) baseQuery.textSearch("title", show);
+
+    let result = await baseQuery
       .order("published_at", {
         ascending: true,
         nullsFirst: false,
@@ -93,19 +96,19 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
 
     // Flip the logic if that fails
     if (!result.data || result.data?.length < 1)
-      result = await baseQuery()
+      result = await baseQuery
         .order("published_at", { ascending: false, nullsFirst: false })
         .filter("published_at", "lte", randomDate.toISOString());
 
     if (!result.data || result.data?.length < 1) {
-      console.error({ result });
-      throw new Error("Could not find an episode to play!");
+      console.error("Could not find an episode to play!", { result });
+      // throw new Error("Could not find an episode to play!");
     }
 
     setResult(result);
 
     setLoading(false);
-  }, [select]);
+  }, [select, show]);
 
   useEffect(() => {
     fetchShow();

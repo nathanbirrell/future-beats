@@ -1,90 +1,51 @@
-body {
+/* body {
   position: relative;
-}
+} */
 
 .colourful-background {
-  display: none;
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  pointer-events: none;
   z-index: -1;
   overflow: hidden;
-  pointer-events: none;
-
-  transform: rotateZ(360deg) translate3d(0, 0, 0);
+  border-radius: 2em;
 }
 
-.colourful-background.loaded {
-  display: block;
-}
-
-.colourful-background.loaded {
-  width: 100%;
-  height: 100%;
-  animation: fadeIn 300ms ease-in;
-}
-
-.colourful-background.loaded .image {
+.album-artwork-color,
+.album-artwork-black {
+  width: 200%;
   position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-
-  filter: blur(2.8rem);
-  opacity: 0.75;
-  mix-blend-mode: hard-light;
-}
-
-.image-static {
-}
-
-.colourful-background.loaded .image-animated {
-  border-radius: 30%;
-  z-index: -1;
-
-  animation-duration: 60s;
+  border-radius: 100em;
+  animation-name: rotate;
+  animation-duration: 120s;
   animation-timing-function: ease-in-out;
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-
-.colourful-background.loaded .image-1 {
-  animation-name: spinning;
-  animation-direction: alternate-reverse;
-  top: -30%;
+.album-artwork-color {
+  right: 0;
+  top: 0;
+  filter: blur(40px);
+  z-index: 10;
+  mix-blend-mode: luminosity;
+}
+.album-artwork-black {
+  left: 0;
+  bottom: 0;
+  filter: blur(40px);
+  z-index: 1;
+  animation-direction: reverse;
+  animation-delay: 2s;
 }
 
-.colourful-background.loaded .image-2 {
-  animation-name: spinning;
-  animation-delay: 5s;
-  bottom: -30%;
-}
-
-.dark-overlay {
-  width: 100%;
-  height: 100%;
-  background: black;
-  z-index: -1;
-  position: absolute;
-  mix-blend-mode: multiply;
-}
-
-@keyframes spinning {
+@keyframes rotate {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
-  }
-}
-
-@keyframes fadeIn {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
   }
 }
