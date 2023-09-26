@@ -222,6 +222,8 @@ const PlayerIframe = ({ id, link, ...props }: iFrameProps) => {
   // ie https://w.soundcloud.com/player/?url=https%3A%2F%2Fsoundcloud.com%2Fsoulection%2Fsoulection-radio-show-520-andres-javier-uribe-takeover&amp;auto_play=true&amp;buying=false&amp;download=false&amp;hide_related=true&amp;sharing=false&amp;show_artwork=false&amp;show_comments=false&amp;show_playcount=false&amp;show_reposts=false&amp;show_teaser=false&amp;show_user=true
   const widgetLink = link ? buildScWidgetSrc(link) : "";
 
+  console.log({ widgetLink });
+
   if (!widgetLink) return null;
 
   return (
