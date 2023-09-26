@@ -12,201 +12,6 @@ export interface paths {
       };
     };
   };
-  "/album_artists": {
-    get: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.album_artists.id"];
-          artist?: parameters["rowFilter.album_artists.artist"];
-          album?: parameters["rowFilter.album_artists.album"];
-          position?: parameters["rowFilter.album_artists.position"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["album_artists"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** album_artists */
-          album_artists?: definitions["album_artists"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.album_artists.id"];
-          artist?: parameters["rowFilter.album_artists.artist"];
-          album?: parameters["rowFilter.album_artists.album"];
-          position?: parameters["rowFilter.album_artists.position"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.album_artists.id"];
-          artist?: parameters["rowFilter.album_artists.artist"];
-          album?: parameters["rowFilter.album_artists.album"];
-          position?: parameters["rowFilter.album_artists.position"];
-        };
-        body: {
-          /** album_artists */
-          album_artists?: definitions["album_artists"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
-  "/album_links": {
-    get: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.album_links.id"];
-          href?: parameters["rowFilter.album_links.href"];
-          artwork?: parameters["rowFilter.album_links.artwork"];
-          last_checked_at?: parameters["rowFilter.album_links.last_checked_at"];
-          album?: parameters["rowFilter.album_links.album"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["album_links"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** album_links */
-          album_links?: definitions["album_links"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.album_links.id"];
-          href?: parameters["rowFilter.album_links.href"];
-          artwork?: parameters["rowFilter.album_links.artwork"];
-          last_checked_at?: parameters["rowFilter.album_links.last_checked_at"];
-          album?: parameters["rowFilter.album_links.album"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.album_links.id"];
-          href?: parameters["rowFilter.album_links.href"];
-          artwork?: parameters["rowFilter.album_links.artwork"];
-          last_checked_at?: parameters["rowFilter.album_links.last_checked_at"];
-          album?: parameters["rowFilter.album_links.album"];
-        };
-        body: {
-          /** album_links */
-          album_links?: definitions["album_links"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
   "/albums": {
     get: {
       parameters: {
@@ -261,7 +66,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -324,16 +129,16 @@ export interface paths {
       };
     };
   };
-  "/artist_links": {
+  "/track_links": {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.artist_links.id"];
-          platform?: parameters["rowFilter.artist_links.platform"];
-          href?: parameters["rowFilter.artist_links.href"];
-          artwork?: parameters["rowFilter.artist_links.artwork"];
-          last_checked_at?: parameters["rowFilter.artist_links.last_checked_at"];
-          artist?: parameters["rowFilter.artist_links.artist"];
+          id?: parameters["rowFilter.track_links.id"];
+          platform?: parameters["rowFilter.track_links.platform"];
+          href?: parameters["rowFilter.track_links.href"];
+          artwork?: parameters["rowFilter.track_links.artwork"];
+          last_checked_at?: parameters["rowFilter.track_links.last_checked_at"];
+          track?: parameters["rowFilter.track_links.track"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -355,7 +160,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["artist_links"][];
+          schema: definitions["track_links"][];
         };
         /** Partial Content */
         206: unknown;
@@ -364,8 +169,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** artist_links */
-          artist_links?: definitions["artist_links"];
+          /** track_links */
+          track_links?: definitions["track_links"];
         };
         query: {
           /** Filtering Columns */
@@ -373,7 +178,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -384,12 +189,12 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.artist_links.id"];
-          platform?: parameters["rowFilter.artist_links.platform"];
-          href?: parameters["rowFilter.artist_links.href"];
-          artwork?: parameters["rowFilter.artist_links.artwork"];
-          last_checked_at?: parameters["rowFilter.artist_links.last_checked_at"];
-          artist?: parameters["rowFilter.artist_links.artist"];
+          id?: parameters["rowFilter.track_links.id"];
+          platform?: parameters["rowFilter.track_links.platform"];
+          href?: parameters["rowFilter.track_links.href"];
+          artwork?: parameters["rowFilter.track_links.artwork"];
+          last_checked_at?: parameters["rowFilter.track_links.last_checked_at"];
+          track?: parameters["rowFilter.track_links.track"];
         };
         header: {
           /** Preference */
@@ -404,232 +209,16 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.artist_links.id"];
-          platform?: parameters["rowFilter.artist_links.platform"];
-          href?: parameters["rowFilter.artist_links.href"];
-          artwork?: parameters["rowFilter.artist_links.artwork"];
-          last_checked_at?: parameters["rowFilter.artist_links.last_checked_at"];
-          artist?: parameters["rowFilter.artist_links.artist"];
+          id?: parameters["rowFilter.track_links.id"];
+          platform?: parameters["rowFilter.track_links.platform"];
+          href?: parameters["rowFilter.track_links.href"];
+          artwork?: parameters["rowFilter.track_links.artwork"];
+          last_checked_at?: parameters["rowFilter.track_links.last_checked_at"];
+          track?: parameters["rowFilter.track_links.track"];
         };
         body: {
-          /** artist_links */
-          artist_links?: definitions["artist_links"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
-  "/artists": {
-    get: {
-      parameters: {
-        query: {
-          title?: parameters["rowFilter.artists.title"];
-          slug?: parameters["rowFilter.artists.slug"];
-          links?: parameters["rowFilter.artists.links"];
-          artwork?: parameters["rowFilter.artists.artwork"];
-          id?: parameters["rowFilter.artists.id"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["artists"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** artists */
-          artists?: definitions["artists"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          title?: parameters["rowFilter.artists.title"];
-          slug?: parameters["rowFilter.artists.slug"];
-          links?: parameters["rowFilter.artists.links"];
-          artwork?: parameters["rowFilter.artists.artwork"];
-          id?: parameters["rowFilter.artists.id"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          title?: parameters["rowFilter.artists.title"];
-          slug?: parameters["rowFilter.artists.slug"];
-          links?: parameters["rowFilter.artists.links"];
-          artwork?: parameters["rowFilter.artists.artwork"];
-          id?: parameters["rowFilter.artists.id"];
-        };
-        body: {
-          /** artists */
-          artists?: definitions["artists"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
-  "/chapters": {
-    get: {
-      parameters: {
-        query: {
-          title?: parameters["rowFilter.chapters.title"];
-          slug?: parameters["rowFilter.chapters.slug"];
-          position?: parameters["rowFilter.chapters.position"];
-          links?: parameters["rowFilter.chapters.links"];
-          artwork?: parameters["rowFilter.chapters.artwork"];
-          id?: parameters["rowFilter.chapters.id"];
-          show?: parameters["rowFilter.chapters.show"];
-          /** any social media associated to the DJ / performer */
-          socials?: parameters["rowFilter.chapters.socials"];
-          state?: parameters["rowFilter.chapters.state"];
-          content?: parameters["rowFilter.chapters.content"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["chapters"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** chapters */
-          chapters?: definitions["chapters"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          title?: parameters["rowFilter.chapters.title"];
-          slug?: parameters["rowFilter.chapters.slug"];
-          position?: parameters["rowFilter.chapters.position"];
-          links?: parameters["rowFilter.chapters.links"];
-          artwork?: parameters["rowFilter.chapters.artwork"];
-          id?: parameters["rowFilter.chapters.id"];
-          show?: parameters["rowFilter.chapters.show"];
-          /** any social media associated to the DJ / performer */
-          socials?: parameters["rowFilter.chapters.socials"];
-          state?: parameters["rowFilter.chapters.state"];
-          content?: parameters["rowFilter.chapters.content"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          title?: parameters["rowFilter.chapters.title"];
-          slug?: parameters["rowFilter.chapters.slug"];
-          position?: parameters["rowFilter.chapters.position"];
-          links?: parameters["rowFilter.chapters.links"];
-          artwork?: parameters["rowFilter.chapters.artwork"];
-          id?: parameters["rowFilter.chapters.id"];
-          show?: parameters["rowFilter.chapters.show"];
-          /** any social media associated to the DJ / performer */
-          socials?: parameters["rowFilter.chapters.socials"];
-          state?: parameters["rowFilter.chapters.state"];
-          content?: parameters["rowFilter.chapters.content"];
-        };
-        body: {
-          /** chapters */
-          chapters?: definitions["chapters"];
+          /** track_links */
+          track_links?: definitions["track_links"];
         };
         header: {
           /** Preference */
@@ -691,7 +280,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -732,99 +321,6 @@ export interface paths {
         body: {
           /** events */
           events?: definitions["events"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-  };
-  "/links": {
-    get: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.links.id"];
-          platform?: parameters["rowFilter.links.platform"];
-          href?: parameters["rowFilter.links.href"];
-          /** Filtering Columns */
-          select?: parameters["select"];
-          /** Ordering */
-          order?: parameters["order"];
-          /** Limiting and Pagination */
-          offset?: parameters["offset"];
-          /** Limiting and Pagination */
-          limit?: parameters["limit"];
-        };
-        header: {
-          /** Limiting and Pagination */
-          Range?: parameters["range"];
-          /** Limiting and Pagination */
-          "Range-Unit"?: parameters["rangeUnit"];
-          /** Preference */
-          Prefer?: parameters["preferCount"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: {
-          schema: definitions["links"][];
-        };
-        /** Partial Content */
-        206: unknown;
-      };
-    };
-    post: {
-      parameters: {
-        body: {
-          /** links */
-          links?: definitions["links"];
-        };
-        query: {
-          /** Filtering Columns */
-          select?: parameters["select"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** Created */
-        201: unknown;
-      };
-    };
-    delete: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.links.id"];
-          platform?: parameters["rowFilter.links.platform"];
-          href?: parameters["rowFilter.links.href"];
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferReturn"];
-        };
-      };
-      responses: {
-        /** No Content */
-        204: never;
-      };
-    };
-    patch: {
-      parameters: {
-        query: {
-          id?: parameters["rowFilter.links.id"];
-          platform?: parameters["rowFilter.links.platform"];
-          href?: parameters["rowFilter.links.href"];
-        };
-        body: {
-          /** links */
-          links?: definitions["links"];
         };
         header: {
           /** Preference */
@@ -887,7 +383,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -942,17 +438,22 @@ export interface paths {
       };
     };
   };
-  "/posts": {
+  "/shows_duplicate": {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.posts.id"];
-          title?: parameters["rowFilter.posts.title"];
-          published_at?: parameters["rowFilter.posts.published_at"];
-          state?: parameters["rowFilter.posts.state"];
-          href?: parameters["rowFilter.posts.href"];
-          artwork?: parameters["rowFilter.posts.artwork"];
-          profile?: parameters["rowFilter.posts.profile"];
+          slug?: parameters["rowFilter.shows_duplicate.slug"];
+          title?: parameters["rowFilter.shows_duplicate.title"];
+          state?: parameters["rowFilter.shows_duplicate.state"];
+          artwork?: parameters["rowFilter.shows_duplicate.artwork"];
+          duration?: parameters["rowFilter.shows_duplicate.duration"];
+          published_at?: parameters["rowFilter.shows_duplicate.published_at"];
+          links?: parameters["rowFilter.shows_duplicate.links"];
+          content?: parameters["rowFilter.shows_duplicate.content"];
+          tags?: parameters["rowFilter.shows_duplicate.tags"];
+          location?: parameters["rowFilter.shows_duplicate.location"];
+          id?: parameters["rowFilter.shows_duplicate.id"];
+          profile?: parameters["rowFilter.shows_duplicate.profile"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -974,7 +475,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["posts"][];
+          schema: definitions["shows_duplicate"][];
         };
         /** Partial Content */
         206: unknown;
@@ -983,8 +484,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** posts */
-          posts?: definitions["posts"];
+          /** shows_duplicate */
+          shows_duplicate?: definitions["shows_duplicate"];
         };
         query: {
           /** Filtering Columns */
@@ -992,7 +493,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1003,13 +504,18 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.posts.id"];
-          title?: parameters["rowFilter.posts.title"];
-          published_at?: parameters["rowFilter.posts.published_at"];
-          state?: parameters["rowFilter.posts.state"];
-          href?: parameters["rowFilter.posts.href"];
-          artwork?: parameters["rowFilter.posts.artwork"];
-          profile?: parameters["rowFilter.posts.profile"];
+          slug?: parameters["rowFilter.shows_duplicate.slug"];
+          title?: parameters["rowFilter.shows_duplicate.title"];
+          state?: parameters["rowFilter.shows_duplicate.state"];
+          artwork?: parameters["rowFilter.shows_duplicate.artwork"];
+          duration?: parameters["rowFilter.shows_duplicate.duration"];
+          published_at?: parameters["rowFilter.shows_duplicate.published_at"];
+          links?: parameters["rowFilter.shows_duplicate.links"];
+          content?: parameters["rowFilter.shows_duplicate.content"];
+          tags?: parameters["rowFilter.shows_duplicate.tags"];
+          location?: parameters["rowFilter.shows_duplicate.location"];
+          id?: parameters["rowFilter.shows_duplicate.id"];
+          profile?: parameters["rowFilter.shows_duplicate.profile"];
         };
         header: {
           /** Preference */
@@ -1024,17 +530,22 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.posts.id"];
-          title?: parameters["rowFilter.posts.title"];
-          published_at?: parameters["rowFilter.posts.published_at"];
-          state?: parameters["rowFilter.posts.state"];
-          href?: parameters["rowFilter.posts.href"];
-          artwork?: parameters["rowFilter.posts.artwork"];
-          profile?: parameters["rowFilter.posts.profile"];
+          slug?: parameters["rowFilter.shows_duplicate.slug"];
+          title?: parameters["rowFilter.shows_duplicate.title"];
+          state?: parameters["rowFilter.shows_duplicate.state"];
+          artwork?: parameters["rowFilter.shows_duplicate.artwork"];
+          duration?: parameters["rowFilter.shows_duplicate.duration"];
+          published_at?: parameters["rowFilter.shows_duplicate.published_at"];
+          links?: parameters["rowFilter.shows_duplicate.links"];
+          content?: parameters["rowFilter.shows_duplicate.content"];
+          tags?: parameters["rowFilter.shows_duplicate.tags"];
+          location?: parameters["rowFilter.shows_duplicate.location"];
+          id?: parameters["rowFilter.shows_duplicate.id"];
+          profile?: parameters["rowFilter.shows_duplicate.profile"];
         };
         body: {
-          /** posts */
-          posts?: definitions["posts"];
+          /** shows_duplicate */
+          shows_duplicate?: definitions["shows_duplicate"];
         };
         header: {
           /** Preference */
@@ -1047,18 +558,16 @@ export interface paths {
       };
     };
   };
-  "/profiles": {
+  "/tracks": {
     get: {
       parameters: {
         query: {
-          slug?: parameters["rowFilter.profiles.slug"];
-          title?: parameters["rowFilter.profiles.title"];
-          published_at?: parameters["rowFilter.profiles.published_at"];
-          created_by?: parameters["rowFilter.profiles.created_by"];
-          updated_by?: parameters["rowFilter.profiles.updated_by"];
-          created_at?: parameters["rowFilter.profiles.created_at"];
-          updated_at?: parameters["rowFilter.profiles.updated_at"];
-          id?: parameters["rowFilter.profiles.id"];
+          title?: parameters["rowFilter.tracks.title"];
+          slug?: parameters["rowFilter.tracks.slug"];
+          path?: parameters["rowFilter.tracks.path"];
+          artwork?: parameters["rowFilter.tracks.artwork"];
+          artist?: parameters["rowFilter.tracks.artist"];
+          id?: parameters["rowFilter.tracks.id"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -1080,7 +589,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["profiles"][];
+          schema: definitions["tracks"][];
         };
         /** Partial Content */
         206: unknown;
@@ -1089,8 +598,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** profiles */
-          profiles?: definitions["profiles"];
+          /** tracks */
+          tracks?: definitions["tracks"];
         };
         query: {
           /** Filtering Columns */
@@ -1098,7 +607,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1109,14 +618,12 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          slug?: parameters["rowFilter.profiles.slug"];
-          title?: parameters["rowFilter.profiles.title"];
-          published_at?: parameters["rowFilter.profiles.published_at"];
-          created_by?: parameters["rowFilter.profiles.created_by"];
-          updated_by?: parameters["rowFilter.profiles.updated_by"];
-          created_at?: parameters["rowFilter.profiles.created_at"];
-          updated_at?: parameters["rowFilter.profiles.updated_at"];
-          id?: parameters["rowFilter.profiles.id"];
+          title?: parameters["rowFilter.tracks.title"];
+          slug?: parameters["rowFilter.tracks.slug"];
+          path?: parameters["rowFilter.tracks.path"];
+          artwork?: parameters["rowFilter.tracks.artwork"];
+          artist?: parameters["rowFilter.tracks.artist"];
+          id?: parameters["rowFilter.tracks.id"];
         };
         header: {
           /** Preference */
@@ -1131,18 +638,400 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          slug?: parameters["rowFilter.profiles.slug"];
-          title?: parameters["rowFilter.profiles.title"];
-          published_at?: parameters["rowFilter.profiles.published_at"];
-          created_by?: parameters["rowFilter.profiles.created_by"];
-          updated_by?: parameters["rowFilter.profiles.updated_by"];
-          created_at?: parameters["rowFilter.profiles.created_at"];
-          updated_at?: parameters["rowFilter.profiles.updated_at"];
-          id?: parameters["rowFilter.profiles.id"];
+          title?: parameters["rowFilter.tracks.title"];
+          slug?: parameters["rowFilter.tracks.slug"];
+          path?: parameters["rowFilter.tracks.path"];
+          artwork?: parameters["rowFilter.tracks.artwork"];
+          artist?: parameters["rowFilter.tracks.artist"];
+          id?: parameters["rowFilter.tracks.id"];
         };
         body: {
-          /** profiles */
-          profiles?: definitions["profiles"];
+          /** tracks */
+          tracks?: definitions["tracks"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
+  "/links": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.links.id"];
+          platform?: parameters["rowFilter.links.platform"];
+          href?: parameters["rowFilter.links.href"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["links"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** links */
+          links?: definitions["links"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferPost"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.links.id"];
+          platform?: parameters["rowFilter.links.platform"];
+          href?: parameters["rowFilter.links.href"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.links.id"];
+          platform?: parameters["rowFilter.links.platform"];
+          href?: parameters["rowFilter.links.href"];
+        };
+        body: {
+          /** links */
+          links?: definitions["links"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
+  "/supply": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.supply.id"];
+          title?: parameters["rowFilter.supply.title"];
+          artwork?: parameters["rowFilter.supply.artwork"];
+          published_at?: parameters["rowFilter.supply.published_at"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["supply"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** supply */
+          supply?: definitions["supply"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferPost"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.supply.id"];
+          title?: parameters["rowFilter.supply.title"];
+          artwork?: parameters["rowFilter.supply.artwork"];
+          published_at?: parameters["rowFilter.supply.published_at"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.supply.id"];
+          title?: parameters["rowFilter.supply.title"];
+          artwork?: parameters["rowFilter.supply.artwork"];
+          published_at?: parameters["rowFilter.supply.published_at"];
+        };
+        body: {
+          /** supply */
+          supply?: definitions["supply"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
+  "/album_artists": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.album_artists.id"];
+          artist?: parameters["rowFilter.album_artists.artist"];
+          album?: parameters["rowFilter.album_artists.album"];
+          position?: parameters["rowFilter.album_artists.position"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["album_artists"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** album_artists */
+          album_artists?: definitions["album_artists"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferPost"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.album_artists.id"];
+          artist?: parameters["rowFilter.album_artists.artist"];
+          album?: parameters["rowFilter.album_artists.album"];
+          position?: parameters["rowFilter.album_artists.position"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.album_artists.id"];
+          artist?: parameters["rowFilter.album_artists.artist"];
+          album?: parameters["rowFilter.album_artists.album"];
+          position?: parameters["rowFilter.album_artists.position"];
+        };
+        body: {
+          /** album_artists */
+          album_artists?: definitions["album_artists"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
+  "/artists": {
+    get: {
+      parameters: {
+        query: {
+          title?: parameters["rowFilter.artists.title"];
+          slug?: parameters["rowFilter.artists.slug"];
+          links?: parameters["rowFilter.artists.links"];
+          artwork?: parameters["rowFilter.artists.artwork"];
+          id?: parameters["rowFilter.artists.id"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["artists"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** artists */
+          artists?: definitions["artists"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferPost"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          title?: parameters["rowFilter.artists.title"];
+          slug?: parameters["rowFilter.artists.slug"];
+          links?: parameters["rowFilter.artists.links"];
+          artwork?: parameters["rowFilter.artists.artwork"];
+          id?: parameters["rowFilter.artists.id"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          title?: parameters["rowFilter.artists.title"];
+          slug?: parameters["rowFilter.artists.slug"];
+          links?: parameters["rowFilter.artists.links"];
+          artwork?: parameters["rowFilter.artists.artwork"];
+          id?: parameters["rowFilter.artists.id"];
+        };
+        body: {
+          /** artists */
+          artists?: definitions["artists"];
         };
         header: {
           /** Preference */
@@ -1211,7 +1100,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1278,22 +1167,18 @@ export interface paths {
       };
     };
   };
-  "/shows_duplicate": {
+  "/profiles": {
     get: {
       parameters: {
         query: {
-          slug?: parameters["rowFilter.shows_duplicate.slug"];
-          title?: parameters["rowFilter.shows_duplicate.title"];
-          state?: parameters["rowFilter.shows_duplicate.state"];
-          artwork?: parameters["rowFilter.shows_duplicate.artwork"];
-          duration?: parameters["rowFilter.shows_duplicate.duration"];
-          published_at?: parameters["rowFilter.shows_duplicate.published_at"];
-          links?: parameters["rowFilter.shows_duplicate.links"];
-          content?: parameters["rowFilter.shows_duplicate.content"];
-          tags?: parameters["rowFilter.shows_duplicate.tags"];
-          location?: parameters["rowFilter.shows_duplicate.location"];
-          id?: parameters["rowFilter.shows_duplicate.id"];
-          profile?: parameters["rowFilter.shows_duplicate.profile"];
+          slug?: parameters["rowFilter.profiles.slug"];
+          title?: parameters["rowFilter.profiles.title"];
+          published_at?: parameters["rowFilter.profiles.published_at"];
+          created_by?: parameters["rowFilter.profiles.created_by"];
+          updated_by?: parameters["rowFilter.profiles.updated_by"];
+          created_at?: parameters["rowFilter.profiles.created_at"];
+          updated_at?: parameters["rowFilter.profiles.updated_at"];
+          id?: parameters["rowFilter.profiles.id"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -1315,7 +1200,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["shows_duplicate"][];
+          schema: definitions["profiles"][];
         };
         /** Partial Content */
         206: unknown;
@@ -1324,8 +1209,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** shows_duplicate */
-          shows_duplicate?: definitions["shows_duplicate"];
+          /** profiles */
+          profiles?: definitions["profiles"];
         };
         query: {
           /** Filtering Columns */
@@ -1333,7 +1218,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1344,18 +1229,14 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          slug?: parameters["rowFilter.shows_duplicate.slug"];
-          title?: parameters["rowFilter.shows_duplicate.title"];
-          state?: parameters["rowFilter.shows_duplicate.state"];
-          artwork?: parameters["rowFilter.shows_duplicate.artwork"];
-          duration?: parameters["rowFilter.shows_duplicate.duration"];
-          published_at?: parameters["rowFilter.shows_duplicate.published_at"];
-          links?: parameters["rowFilter.shows_duplicate.links"];
-          content?: parameters["rowFilter.shows_duplicate.content"];
-          tags?: parameters["rowFilter.shows_duplicate.tags"];
-          location?: parameters["rowFilter.shows_duplicate.location"];
-          id?: parameters["rowFilter.shows_duplicate.id"];
-          profile?: parameters["rowFilter.shows_duplicate.profile"];
+          slug?: parameters["rowFilter.profiles.slug"];
+          title?: parameters["rowFilter.profiles.title"];
+          published_at?: parameters["rowFilter.profiles.published_at"];
+          created_by?: parameters["rowFilter.profiles.created_by"];
+          updated_by?: parameters["rowFilter.profiles.updated_by"];
+          created_at?: parameters["rowFilter.profiles.created_at"];
+          updated_at?: parameters["rowFilter.profiles.updated_at"];
+          id?: parameters["rowFilter.profiles.id"];
         };
         header: {
           /** Preference */
@@ -1370,22 +1251,18 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          slug?: parameters["rowFilter.shows_duplicate.slug"];
-          title?: parameters["rowFilter.shows_duplicate.title"];
-          state?: parameters["rowFilter.shows_duplicate.state"];
-          artwork?: parameters["rowFilter.shows_duplicate.artwork"];
-          duration?: parameters["rowFilter.shows_duplicate.duration"];
-          published_at?: parameters["rowFilter.shows_duplicate.published_at"];
-          links?: parameters["rowFilter.shows_duplicate.links"];
-          content?: parameters["rowFilter.shows_duplicate.content"];
-          tags?: parameters["rowFilter.shows_duplicate.tags"];
-          location?: parameters["rowFilter.shows_duplicate.location"];
-          id?: parameters["rowFilter.shows_duplicate.id"];
-          profile?: parameters["rowFilter.shows_duplicate.profile"];
+          slug?: parameters["rowFilter.profiles.slug"];
+          title?: parameters["rowFilter.profiles.title"];
+          published_at?: parameters["rowFilter.profiles.published_at"];
+          created_by?: parameters["rowFilter.profiles.created_by"];
+          updated_by?: parameters["rowFilter.profiles.updated_by"];
+          created_at?: parameters["rowFilter.profiles.created_at"];
+          updated_at?: parameters["rowFilter.profiles.updated_at"];
+          id?: parameters["rowFilter.profiles.id"];
         };
         body: {
-          /** shows_duplicate */
-          shows_duplicate?: definitions["shows_duplicate"];
+          /** profiles */
+          profiles?: definitions["profiles"];
         };
         header: {
           /** Preference */
@@ -1398,14 +1275,21 @@ export interface paths {
       };
     };
   };
-  "/supply": {
+  "/chapters": {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.supply.id"];
-          title?: parameters["rowFilter.supply.title"];
-          artwork?: parameters["rowFilter.supply.artwork"];
-          published_at?: parameters["rowFilter.supply.published_at"];
+          title?: parameters["rowFilter.chapters.title"];
+          slug?: parameters["rowFilter.chapters.slug"];
+          position?: parameters["rowFilter.chapters.position"];
+          links?: parameters["rowFilter.chapters.links"];
+          artwork?: parameters["rowFilter.chapters.artwork"];
+          id?: parameters["rowFilter.chapters.id"];
+          show?: parameters["rowFilter.chapters.show"];
+          /** any social media associated to the DJ / performer */
+          socials?: parameters["rowFilter.chapters.socials"];
+          state?: parameters["rowFilter.chapters.state"];
+          content?: parameters["rowFilter.chapters.content"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -1427,7 +1311,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["supply"][];
+          schema: definitions["chapters"][];
         };
         /** Partial Content */
         206: unknown;
@@ -1436,8 +1320,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** supply */
-          supply?: definitions["supply"];
+          /** chapters */
+          chapters?: definitions["chapters"];
         };
         query: {
           /** Filtering Columns */
@@ -1445,7 +1329,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1456,10 +1340,17 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.supply.id"];
-          title?: parameters["rowFilter.supply.title"];
-          artwork?: parameters["rowFilter.supply.artwork"];
-          published_at?: parameters["rowFilter.supply.published_at"];
+          title?: parameters["rowFilter.chapters.title"];
+          slug?: parameters["rowFilter.chapters.slug"];
+          position?: parameters["rowFilter.chapters.position"];
+          links?: parameters["rowFilter.chapters.links"];
+          artwork?: parameters["rowFilter.chapters.artwork"];
+          id?: parameters["rowFilter.chapters.id"];
+          show?: parameters["rowFilter.chapters.show"];
+          /** any social media associated to the DJ / performer */
+          socials?: parameters["rowFilter.chapters.socials"];
+          state?: parameters["rowFilter.chapters.state"];
+          content?: parameters["rowFilter.chapters.content"];
         };
         header: {
           /** Preference */
@@ -1474,14 +1365,120 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.supply.id"];
-          title?: parameters["rowFilter.supply.title"];
-          artwork?: parameters["rowFilter.supply.artwork"];
-          published_at?: parameters["rowFilter.supply.published_at"];
+          title?: parameters["rowFilter.chapters.title"];
+          slug?: parameters["rowFilter.chapters.slug"];
+          position?: parameters["rowFilter.chapters.position"];
+          links?: parameters["rowFilter.chapters.links"];
+          artwork?: parameters["rowFilter.chapters.artwork"];
+          id?: parameters["rowFilter.chapters.id"];
+          show?: parameters["rowFilter.chapters.show"];
+          /** any social media associated to the DJ / performer */
+          socials?: parameters["rowFilter.chapters.socials"];
+          state?: parameters["rowFilter.chapters.state"];
+          content?: parameters["rowFilter.chapters.content"];
         };
         body: {
-          /** supply */
-          supply?: definitions["supply"];
+          /** chapters */
+          chapters?: definitions["chapters"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+  };
+  "/album_links": {
+    get: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.album_links.id"];
+          href?: parameters["rowFilter.album_links.href"];
+          artwork?: parameters["rowFilter.album_links.artwork"];
+          last_checked_at?: parameters["rowFilter.album_links.last_checked_at"];
+          album?: parameters["rowFilter.album_links.album"];
+          /** Filtering Columns */
+          select?: parameters["select"];
+          /** Ordering */
+          order?: parameters["order"];
+          /** Limiting and Pagination */
+          offset?: parameters["offset"];
+          /** Limiting and Pagination */
+          limit?: parameters["limit"];
+        };
+        header: {
+          /** Limiting and Pagination */
+          Range?: parameters["range"];
+          /** Limiting and Pagination */
+          "Range-Unit"?: parameters["rangeUnit"];
+          /** Preference */
+          Prefer?: parameters["preferCount"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: {
+          schema: definitions["album_links"][];
+        };
+        /** Partial Content */
+        206: unknown;
+      };
+    };
+    post: {
+      parameters: {
+        body: {
+          /** album_links */
+          album_links?: definitions["album_links"];
+        };
+        query: {
+          /** Filtering Columns */
+          select?: parameters["select"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferPost"];
+        };
+      };
+      responses: {
+        /** Created */
+        201: unknown;
+      };
+    };
+    delete: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.album_links.id"];
+          href?: parameters["rowFilter.album_links.href"];
+          artwork?: parameters["rowFilter.album_links.artwork"];
+          last_checked_at?: parameters["rowFilter.album_links.last_checked_at"];
+          album?: parameters["rowFilter.album_links.album"];
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferReturn"];
+        };
+      };
+      responses: {
+        /** No Content */
+        204: never;
+      };
+    };
+    patch: {
+      parameters: {
+        query: {
+          id?: parameters["rowFilter.album_links.id"];
+          href?: parameters["rowFilter.album_links.href"];
+          artwork?: parameters["rowFilter.album_links.artwork"];
+          last_checked_at?: parameters["rowFilter.album_links.last_checked_at"];
+          album?: parameters["rowFilter.album_links.album"];
+        };
+        body: {
+          /** album_links */
+          album_links?: definitions["album_links"];
         };
         header: {
           /** Preference */
@@ -1539,7 +1536,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1584,16 +1581,17 @@ export interface paths {
       };
     };
   };
-  "/track_links": {
+  "/posts": {
     get: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.track_links.id"];
-          platform?: parameters["rowFilter.track_links.platform"];
-          href?: parameters["rowFilter.track_links.href"];
-          artwork?: parameters["rowFilter.track_links.artwork"];
-          last_checked_at?: parameters["rowFilter.track_links.last_checked_at"];
-          track?: parameters["rowFilter.track_links.track"];
+          id?: parameters["rowFilter.posts.id"];
+          title?: parameters["rowFilter.posts.title"];
+          published_at?: parameters["rowFilter.posts.published_at"];
+          state?: parameters["rowFilter.posts.state"];
+          href?: parameters["rowFilter.posts.href"];
+          artwork?: parameters["rowFilter.posts.artwork"];
+          profile?: parameters["rowFilter.posts.profile"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -1615,7 +1613,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["track_links"][];
+          schema: definitions["posts"][];
         };
         /** Partial Content */
         206: unknown;
@@ -1624,8 +1622,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** track_links */
-          track_links?: definitions["track_links"];
+          /** posts */
+          posts?: definitions["posts"];
         };
         query: {
           /** Filtering Columns */
@@ -1633,7 +1631,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1644,12 +1642,13 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.track_links.id"];
-          platform?: parameters["rowFilter.track_links.platform"];
-          href?: parameters["rowFilter.track_links.href"];
-          artwork?: parameters["rowFilter.track_links.artwork"];
-          last_checked_at?: parameters["rowFilter.track_links.last_checked_at"];
-          track?: parameters["rowFilter.track_links.track"];
+          id?: parameters["rowFilter.posts.id"];
+          title?: parameters["rowFilter.posts.title"];
+          published_at?: parameters["rowFilter.posts.published_at"];
+          state?: parameters["rowFilter.posts.state"];
+          href?: parameters["rowFilter.posts.href"];
+          artwork?: parameters["rowFilter.posts.artwork"];
+          profile?: parameters["rowFilter.posts.profile"];
         };
         header: {
           /** Preference */
@@ -1664,16 +1663,17 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          id?: parameters["rowFilter.track_links.id"];
-          platform?: parameters["rowFilter.track_links.platform"];
-          href?: parameters["rowFilter.track_links.href"];
-          artwork?: parameters["rowFilter.track_links.artwork"];
-          last_checked_at?: parameters["rowFilter.track_links.last_checked_at"];
-          track?: parameters["rowFilter.track_links.track"];
+          id?: parameters["rowFilter.posts.id"];
+          title?: parameters["rowFilter.posts.title"];
+          published_at?: parameters["rowFilter.posts.published_at"];
+          state?: parameters["rowFilter.posts.state"];
+          href?: parameters["rowFilter.posts.href"];
+          artwork?: parameters["rowFilter.posts.artwork"];
+          profile?: parameters["rowFilter.posts.profile"];
         };
         body: {
-          /** track_links */
-          track_links?: definitions["track_links"];
+          /** posts */
+          posts?: definitions["posts"];
         };
         header: {
           /** Preference */
@@ -1686,16 +1686,16 @@ export interface paths {
       };
     };
   };
-  "/tracks": {
+  "/artist_links": {
     get: {
       parameters: {
         query: {
-          title?: parameters["rowFilter.tracks.title"];
-          slug?: parameters["rowFilter.tracks.slug"];
-          path?: parameters["rowFilter.tracks.path"];
-          artwork?: parameters["rowFilter.tracks.artwork"];
-          artist?: parameters["rowFilter.tracks.artist"];
-          id?: parameters["rowFilter.tracks.id"];
+          id?: parameters["rowFilter.artist_links.id"];
+          platform?: parameters["rowFilter.artist_links.platform"];
+          href?: parameters["rowFilter.artist_links.href"];
+          artwork?: parameters["rowFilter.artist_links.artwork"];
+          last_checked_at?: parameters["rowFilter.artist_links.last_checked_at"];
+          artist?: parameters["rowFilter.artist_links.artist"];
           /** Filtering Columns */
           select?: parameters["select"];
           /** Ordering */
@@ -1717,7 +1717,7 @@ export interface paths {
       responses: {
         /** OK */
         200: {
-          schema: definitions["tracks"][];
+          schema: definitions["artist_links"][];
         };
         /** Partial Content */
         206: unknown;
@@ -1726,8 +1726,8 @@ export interface paths {
     post: {
       parameters: {
         body: {
-          /** tracks */
-          tracks?: definitions["tracks"];
+          /** artist_links */
+          artist_links?: definitions["artist_links"];
         };
         query: {
           /** Filtering Columns */
@@ -1735,7 +1735,7 @@ export interface paths {
         };
         header: {
           /** Preference */
-          Prefer?: parameters["preferReturn"];
+          Prefer?: parameters["preferPost"];
         };
       };
       responses: {
@@ -1746,12 +1746,12 @@ export interface paths {
     delete: {
       parameters: {
         query: {
-          title?: parameters["rowFilter.tracks.title"];
-          slug?: parameters["rowFilter.tracks.slug"];
-          path?: parameters["rowFilter.tracks.path"];
-          artwork?: parameters["rowFilter.tracks.artwork"];
-          artist?: parameters["rowFilter.tracks.artist"];
-          id?: parameters["rowFilter.tracks.id"];
+          id?: parameters["rowFilter.artist_links.id"];
+          platform?: parameters["rowFilter.artist_links.platform"];
+          href?: parameters["rowFilter.artist_links.href"];
+          artwork?: parameters["rowFilter.artist_links.artwork"];
+          last_checked_at?: parameters["rowFilter.artist_links.last_checked_at"];
+          artist?: parameters["rowFilter.artist_links.artist"];
         };
         header: {
           /** Preference */
@@ -1766,16 +1766,16 @@ export interface paths {
     patch: {
       parameters: {
         query: {
-          title?: parameters["rowFilter.tracks.title"];
-          slug?: parameters["rowFilter.tracks.slug"];
-          path?: parameters["rowFilter.tracks.path"];
-          artwork?: parameters["rowFilter.tracks.artwork"];
-          artist?: parameters["rowFilter.tracks.artist"];
-          id?: parameters["rowFilter.tracks.id"];
+          id?: parameters["rowFilter.artist_links.id"];
+          platform?: parameters["rowFilter.artist_links.platform"];
+          href?: parameters["rowFilter.artist_links.href"];
+          artwork?: parameters["rowFilter.artist_links.artwork"];
+          last_checked_at?: parameters["rowFilter.artist_links.last_checked_at"];
+          artist?: parameters["rowFilter.artist_links.artist"];
         };
         body: {
-          /** tracks */
-          tracks?: definitions["tracks"];
+          /** artist_links */
+          artist_links?: definitions["artist_links"];
         };
         header: {
           /** Preference */
@@ -1785,42 +1785,6 @@ export interface paths {
       responses: {
         /** No Content */
         204: never;
-      };
-    };
-  };
-  "/rpc/tags_counts": {
-    post: {
-      parameters: {
-        body: {
-          args: { [key: string]: unknown };
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferParams"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: unknown;
-      };
-    };
-  };
-  "/rpc/search_tracks": {
-    post: {
-      parameters: {
-        body: {
-          args: {
-            query: string;
-          };
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferParams"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: unknown;
       };
     };
   };
@@ -1829,6 +1793,7 @@ export interface paths {
       parameters: {
         body: {
           args: {
+            /** Format: text */
             query: string;
           };
         };
@@ -1843,24 +1808,7 @@ export interface paths {
       };
     };
   };
-  "/rpc/shortkey_generate": {
-    post: {
-      parameters: {
-        body: {
-          args: { [key: string]: unknown };
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferParams"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: unknown;
-      };
-    };
-  };
-  "/rpc/set_album_slug_from_name": {
+  "/rpc/tags_counts": {
     post: {
       parameters: {
         body: {
@@ -1882,6 +1830,7 @@ export interface paths {
       parameters: {
         body: {
           args: {
+            /** Format: text */
             query: string;
           };
         };
@@ -1896,87 +1845,14 @@ export interface paths {
       };
     };
   };
-  "/rpc/slugify": {
+  "/rpc/search_tracks": {
     post: {
       parameters: {
         body: {
           args: {
-            value: string;
+            /** Format: text */
+            query: string;
           };
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferParams"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: unknown;
-      };
-    };
-  };
-  "/rpc/unaccent_lexize": {
-    post: {
-      parameters: {
-        body: {
-          args: {
-            "": string;
-          };
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferParams"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: unknown;
-      };
-    };
-  };
-  "/rpc/unaccent": {
-    post: {
-      parameters: {
-        body: {
-          args: {
-            "": string;
-          };
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferParams"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: unknown;
-      };
-    };
-  };
-  "/rpc/unaccent_init": {
-    post: {
-      parameters: {
-        body: {
-          args: {
-            "": string;
-          };
-        };
-        header: {
-          /** Preference */
-          Prefer?: parameters["preferParams"];
-        };
-      };
-      responses: {
-        /** OK */
-        200: unknown;
-      };
-    };
-  };
-  "/rpc/notify_api_restart": {
-    post: {
-      parameters: {
-        body: {
-          args: { [key: string]: unknown };
         };
         header: {
           /** Preference */
@@ -2006,441 +1882,783 @@ export interface paths {
       };
     };
   };
+  "/rpc/notify_api_restart": {
+    post: {
+      parameters: {
+        body: {
+          args: { [key: string]: unknown };
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferParams"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: unknown;
+      };
+    };
+  };
+  "/rpc/slugify": {
+    post: {
+      parameters: {
+        body: {
+          args: {
+            /** Format: text */
+            value: string;
+          };
+        };
+        header: {
+          /** Preference */
+          Prefer?: parameters["preferParams"];
+        };
+      };
+      responses: {
+        /** OK */
+        200: unknown;
+      };
+    };
+  };
 }
 
 export interface definitions {
-  album_artists: {
-    id: string;
-    /**
-     * Note:
-     * This is a Foreign Key to `artists.id`.<fk table='artists' column='id'/>
-     */
-    artist: string;
-    /**
-     * Note:
-     * This is a Foreign Key to `albums.id`.<fk table='albums' column='id'/>
-     */
-    album: string;
-    position: number;
-  };
-  album_links: {
-    id: string;
-    href?: string;
-    artwork?: string;
-    last_checked_at: string;
-    /**
-     * Note:
-     * This is a Foreign Key to `albums.id`.<fk table='albums' column='id'/>
-     */
-    album: string;
-  };
   albums: {
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
+    /** Format: character varying */
     title: string;
+    /** Format: character varying */
     slug: string;
+    /** Format: character varying */
     artwork?: string;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
     published_at: string;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Foreign Key to `artists.id`.<fk table='artists' column='id'/>
      */
     artist?: string;
+    /** Format: character varying */
     catalogNumber?: string;
-    links?: string;
+    /** Format: jsonb */
+    links?: unknown;
+    /** Format: text */
     content?: string;
-    tags?: string;
+    /** Format: text[] */
+    tags?: string[];
+    /**
+     * Format: character varying
+     * @default draft
+     */
     state: string;
   };
-  /** This is a duplicate copy of track_links */
-  artist_links: {
+  track_links: {
     /**
-     * Note:
+     * Format: integer
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: number;
-    platform?: string;
-    href?: string;
-    artwork?: string;
-    last_checked_at?: string;
-    artist?: string;
-  };
-  artists: {
-    title: string;
-    slug: string;
-    links?: string;
+    /** Format: character varying */
+    platform: string;
+    /** Format: character varying */
+    href: string;
+    /** Format: character varying */
     artwork?: string;
     /**
-     * Note:
-     * This is a Primary Key.<pk/>
+     * Format: timestamp with time zone
+     * @default now()
      */
-    id: string;
-  };
-  chapters: {
-    title: string;
-    slug: string;
-    position: number;
-    links?: string;
-    artwork?: string;
+    last_checked_at: string;
     /**
-     * Note:
-     * This is a Primary Key.<pk/>
+     * Format: character varying
+     * @description Note:
+     * This is a Foreign Key to `tracks.id`.<fk table='tracks' column='id'/>
      */
-    id: string;
-    /**
-     * Note:
-     * This is a Foreign Key to `shows.id`.<fk table='shows' column='id'/>
-     */
-    show?: string;
-    /** any social media associated to the DJ / performer */
-    socials?: string;
-    state: string;
-    content?: string;
+    track?: string;
   };
   events: {
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
+    /** Format: character varying */
     title?: string;
+    /** Format: character varying */
     artwork?: string;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
     published_at: string;
-    links?: string;
+    /** Format: jsonb */
+    links?: unknown;
+    /**
+     * Format: character varying
+     * @default concert
+     */
     event_type?: string;
   };
-  links: {
-    /**
-     * Note:
-     * This is a Primary Key.<pk/>
-     */
-    id: number;
-    platform: string;
-    href: string;
-  };
   markers: {
+    /** Format: time without time zone */
     timestamp?: string;
-    /** Artist and Title of track */
+    /**
+     * Format: character varying
+     * @description Artist and Title of track
+     */
     rawTrack?: string;
+    /**
+     * Format: integer
+     * @default 0
+     */
     position: number;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Foreign Key to `tracks.id`.<fk table='tracks' column='id'/>
      */
     track?: string;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Foreign Key to `chapters.id`.<fk table='chapters' column='id'/>
      */
     chapter: string;
   };
-  posts: {
+  /** @description This is a duplicate copy of shows */
+  shows_duplicate: {
+    /** Format: character varying */
+    slug?: string;
+    /** Format: character varying */
+    title?: string;
+    /** Format: character varying */
+    state?: string;
+    /** Format: character varying */
+    artwork?: string;
+    /** Format: integer */
+    duration?: number;
+    /** Format: timestamp with time zone */
+    published_at?: string;
+    /** Format: jsonb */
+    links?: unknown;
+    /** Format: text */
+    content?: string;
+    /** Format: integer[] */
+    tags?: number[];
+    /** Format: character varying */
+    location?: string;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     */
+    id: string;
+    /** Format: character varying */
+    profile?: string;
+  };
+  tracks: {
+    /** Format: character varying */
+    title: string;
+    /** Format: character varying */
+    slug: string;
+    /** Format: character varying */
+    path: string;
+    /** Format: character varying */
+    artwork?: string;
+    /**
+     * Format: character varying
+     * @description Note:
+     * This is a Foreign Key to `artists.id`.<fk table='artists' column='id'/>
+     */
+    artist: string;
+    /**
+     * Format: character varying
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     */
+    id: string;
+  };
+  links: {
+    /**
+     * Format: integer
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: number;
+    /** Format: character varying */
+    platform: string;
+    /** Format: character varying */
+    href: string;
+  };
+  supply: {
+    /**
+     * Format: integer
+     * @description Note:
+     * This is a Primary Key.<pk/>
+     */
+    id: number;
+    /** Format: text */
     title: string;
+    /** Format: text */
+    artwork: string;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
     published_at: string;
-    state: string;
-    href?: string;
+  };
+  album_artists: {
+    /** Format: character varying */
+    id: string;
+    /**
+     * Format: character varying
+     * @description Note:
+     * This is a Foreign Key to `artists.id`.<fk table='artists' column='id'/>
+     */
+    artist: string;
+    /**
+     * Format: character varying
+     * @description Note:
+     * This is a Foreign Key to `albums.id`.<fk table='albums' column='id'/>
+     */
+    album: string;
+    /**
+     * Format: integer
+     * @default 0
+     */
+    position: number;
+  };
+  artists: {
+    /** Format: character varying */
+    title: string;
+    /** Format: character varying */
+    slug: string;
+    /** Format: jsonb */
+    links?: unknown;
+    /** Format: character varying */
     artwork?: string;
     /**
-     * Note:
-     * This is a Foreign Key to `profiles.id`.<fk table='profiles' column='id'/>
-     */
-    profile: string;
-  };
-  profiles: {
-    slug?: string;
-    title?: string;
-    published_at?: string;
-    created_by?: number;
-    updated_by?: number;
-    created_at?: string;
-    updated_at?: string;
-    /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
   };
   shows: {
+    /** Format: character varying */
     slug: string;
+    /** Format: character varying */
     title: string;
+    /**
+     * Format: character varying
+     * @default draft
+     */
     state: string;
-    /** path or URL to artwork */
+    /**
+     * Format: character varying
+     * @description path or URL to artwork
+     */
     artwork?: string;
+    /**
+     * Format: integer
+     * @default 0
+     */
     duration: number;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
     published_at?: string;
-    links?: {
-      appleMusic: string;
-      soundcloud: string;
-    };
+    /** Format: jsonb */
+    links?: unknown;
+    /** Format: text */
     content?: string;
-    tags?: string;
+    /** Format: integer[] */
+    tags?: number[];
+    /** Format: character varying */
     location?: string;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Foreign Key to `profiles.id`.<fk table='profiles' column='id'/>
      */
     profile: string;
   };
-  /** This is a duplicate copy of shows */
-  shows_duplicate: {
+  profiles: {
+    /** Format: character varying */
     slug?: string;
+    /** Format: character varying */
     title?: string;
-    state?: string;
-    artwork?: string;
-    duration?: number;
+    /** Format: timestamp with time zone */
     published_at?: string;
-    links?: string;
-    content?: string;
-    tags?: string;
-    location?: string;
+    /** Format: integer */
+    created_by?: number;
+    /** Format: integer */
+    updated_by?: number;
+    /** Format: timestamp with time zone */
+    created_at?: string;
+    /** Format: timestamp with time zone */
+    updated_at?: string;
     /**
-     * Note:
+     * Format: character varying
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: string;
-    profile?: string;
   };
-  supply: {
+  chapters: {
+    /** Format: character varying */
+    title: string;
+    /** Format: character varying */
+    slug: string;
     /**
-     * Note:
+     * Format: integer
+     * @default 0
+     */
+    position: number;
+    /** Format: jsonb */
+    links?: unknown;
+    /** Format: character varying */
+    artwork?: string;
+    /**
+     * Format: character varying
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
-    id: number;
-    title: string;
-    artwork: string;
-    published_at: string;
+    id: string;
+    /**
+     * Format: character varying
+     * @description Note:
+     * This is a Foreign Key to `shows.id`.<fk table='shows' column='id'/>
+     */
+    show?: string;
+    /**
+     * Format: jsonb
+     * @description any social media associated to the DJ / performer
+     */
+    socials?: unknown;
+    /**
+     * Format: character varying
+     * @default draft
+     */
+    state: string;
+    /** Format: text */
+    content?: string;
+  };
+  album_links: {
+    /** Format: character varying */
+    id: string;
+    /** Format: character varying */
+    href?: string;
+    /** Format: character varying */
+    artwork?: string;
+    /**
+     * Format: timestamp with time zone
+     * @default timezone('utc'::text, now())
+     */
+    last_checked_at: string;
+    /**
+     * Format: character varying
+     * @description Note:
+     * This is a Foreign Key to `albums.id`.<fk table='albums' column='id'/>
+     */
+    album: string;
   };
   tags: {
     /**
-     * Note:
+     * Format: integer
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: number;
+    /** Format: character varying */
     name: string;
   };
-  track_links: {
+  posts: {
     /**
-     * Note:
+     * Format: integer
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
     id: number;
-    platform: string;
-    href: string;
-    artwork?: string;
-    last_checked_at: string;
-    /**
-     * Note:
-     * This is a Foreign Key to `tracks.id`.<fk table='tracks' column='id'/>
-     */
-    track?: string;
-  };
-  tracks: {
+    /** Format: character varying */
     title: string;
-    slug: string;
-    path: string;
+    /**
+     * Format: timestamp with time zone
+     * @default now()
+     */
+    published_at: string;
+    /**
+     * Format: character varying
+     * @default draft
+     */
+    state: string;
+    /** Format: character varying */
+    href?: string;
+    /** Format: character varying */
     artwork?: string;
     /**
-     * Note:
-     * This is a Foreign Key to `artists.id`.<fk table='artists' column='id'/>
+     * Format: character varying
+     * @description Note:
+     * This is a Foreign Key to `profiles.id`.<fk table='profiles' column='id'/>
      */
-    artist: string;
+    profile: string;
+  };
+  /** @description This is a duplicate copy of track_links */
+  artist_links: {
     /**
-     * Note:
+     * Format: integer
+     * @description Note:
      * This is a Primary Key.<pk/>
      */
-    id: string;
+    id: number;
+    /** Format: character varying */
+    platform?: string;
+    /** Format: character varying */
+    href?: string;
+    /** Format: character varying */
+    artwork?: string;
+    /** Format: timestamp with time zone */
+    last_checked_at?: string;
+    /** Format: character varying */
+    artist?: string;
   };
 }
 
 export interface parameters {
-  /** Preference */
+  /**
+   * @description Preference
+   * @enum {string}
+   */
   preferParams: "params=single-object";
-  /** Preference */
+  /**
+   * @description Preference
+   * @enum {string}
+   */
   preferReturn: "return=representation" | "return=minimal" | "return=none";
-  /** Preference */
+  /**
+   * @description Preference
+   * @enum {string}
+   */
   preferCount: "count=none";
-  /** Filtering Columns */
+  /**
+   * @description Preference
+   * @enum {string}
+   */
+  preferPost:
+    | "return=representation"
+    | "return=minimal"
+    | "return=none"
+    | "resolution=ignore-duplicates"
+    | "resolution=merge-duplicates";
+  /** @description Filtering Columns */
   select: string;
-  /** On Conflict */
+  /** @description On Conflict */
   on_conflict: string;
-  /** Ordering */
+  /** @description Ordering */
   order: string;
-  /** Limiting and Pagination */
+  /** @description Limiting and Pagination */
   range: string;
-  /** Limiting and Pagination */
+  /**
+   * @description Limiting and Pagination
+   * @default items
+   */
   rangeUnit: string;
-  /** Limiting and Pagination */
+  /** @description Limiting and Pagination */
   offset: string;
-  /** Limiting and Pagination */
+  /** @description Limiting and Pagination */
   limit: string;
-  /** album_artists */
-  "body.album_artists": definitions["album_artists"];
-  "rowFilter.album_artists.id": string;
-  "rowFilter.album_artists.artist": string;
-  "rowFilter.album_artists.album": string;
-  "rowFilter.album_artists.position": string;
-  /** album_links */
-  "body.album_links": definitions["album_links"];
-  "rowFilter.album_links.id": string;
-  "rowFilter.album_links.href": string;
-  "rowFilter.album_links.artwork": string;
-  "rowFilter.album_links.last_checked_at": string;
-  "rowFilter.album_links.album": string;
-  /** albums */
+  /** @description albums */
   "body.albums": definitions["albums"];
+  /** Format: character varying */
   "rowFilter.albums.id": string;
+  /** Format: character varying */
   "rowFilter.albums.title": string;
+  /** Format: character varying */
   "rowFilter.albums.slug": string;
+  /** Format: character varying */
   "rowFilter.albums.artwork": string;
+  /** Format: timestamp with time zone */
   "rowFilter.albums.published_at": string;
+  /** Format: character varying */
   "rowFilter.albums.artist": string;
+  /** Format: character varying */
   "rowFilter.albums.catalogNumber": string;
+  /** Format: jsonb */
   "rowFilter.albums.links": string;
+  /** Format: text */
   "rowFilter.albums.content": string;
+  /** Format: text[] */
   "rowFilter.albums.tags": string;
+  /** Format: character varying */
   "rowFilter.albums.state": string;
-  /** artist_links */
-  "body.artist_links": definitions["artist_links"];
-  "rowFilter.artist_links.id": string;
-  "rowFilter.artist_links.platform": string;
-  "rowFilter.artist_links.href": string;
-  "rowFilter.artist_links.artwork": string;
-  "rowFilter.artist_links.last_checked_at": string;
-  "rowFilter.artist_links.artist": string;
-  /** artists */
-  "body.artists": definitions["artists"];
-  "rowFilter.artists.title": string;
-  "rowFilter.artists.slug": string;
-  "rowFilter.artists.links": string;
-  "rowFilter.artists.artwork": string;
-  "rowFilter.artists.id": string;
-  /** chapters */
-  "body.chapters": definitions["chapters"];
-  "rowFilter.chapters.title": string;
-  "rowFilter.chapters.slug": string;
-  "rowFilter.chapters.position": string;
-  "rowFilter.chapters.links": string;
-  "rowFilter.chapters.artwork": string;
-  "rowFilter.chapters.id": string;
-  "rowFilter.chapters.show": string;
-  /** any social media associated to the DJ / performer */
-  "rowFilter.chapters.socials": string;
-  "rowFilter.chapters.state": string;
-  "rowFilter.chapters.content": string;
-  /** events */
-  "body.events": definitions["events"];
-  "rowFilter.events.id": string;
-  "rowFilter.events.title": string;
-  "rowFilter.events.artwork": string;
-  "rowFilter.events.published_at": string;
-  "rowFilter.events.links": string;
-  "rowFilter.events.event_type": string;
-  /** links */
-  "body.links": definitions["links"];
-  "rowFilter.links.id": string;
-  "rowFilter.links.platform": string;
-  "rowFilter.links.href": string;
-  /** markers */
-  "body.markers": definitions["markers"];
-  "rowFilter.markers.timestamp": string;
-  /** Artist and Title of track */
-  "rowFilter.markers.rawTrack": string;
-  "rowFilter.markers.position": string;
-  "rowFilter.markers.track": string;
-  "rowFilter.markers.id": string;
-  "rowFilter.markers.chapter": string;
-  /** posts */
-  "body.posts": definitions["posts"];
-  "rowFilter.posts.id": string;
-  "rowFilter.posts.title": string;
-  "rowFilter.posts.published_at": string;
-  "rowFilter.posts.state": string;
-  "rowFilter.posts.href": string;
-  "rowFilter.posts.artwork": string;
-  "rowFilter.posts.profile": string;
-  /** profiles */
-  "body.profiles": definitions["profiles"];
-  "rowFilter.profiles.slug": string;
-  "rowFilter.profiles.title": string;
-  "rowFilter.profiles.published_at": string;
-  "rowFilter.profiles.created_by": string;
-  "rowFilter.profiles.updated_by": string;
-  "rowFilter.profiles.created_at": string;
-  "rowFilter.profiles.updated_at": string;
-  "rowFilter.profiles.id": string;
-  /** shows */
-  "body.shows": definitions["shows"];
-  "rowFilter.shows.slug": string;
-  "rowFilter.shows.title": string;
-  "rowFilter.shows.state": string;
-  /** path or URL to artwork */
-  "rowFilter.shows.artwork": string;
-  "rowFilter.shows.duration": string;
-  "rowFilter.shows.published_at": string;
-  "rowFilter.shows.links": string;
-  "rowFilter.shows.content": string;
-  "rowFilter.shows.tags": string;
-  "rowFilter.shows.location": string;
-  "rowFilter.shows.id": string;
-  "rowFilter.shows.profile": string;
-  /** shows_duplicate */
-  "body.shows_duplicate": definitions["shows_duplicate"];
-  "rowFilter.shows_duplicate.slug": string;
-  "rowFilter.shows_duplicate.title": string;
-  "rowFilter.shows_duplicate.state": string;
-  "rowFilter.shows_duplicate.artwork": string;
-  "rowFilter.shows_duplicate.duration": string;
-  "rowFilter.shows_duplicate.published_at": string;
-  "rowFilter.shows_duplicate.links": string;
-  "rowFilter.shows_duplicate.content": string;
-  "rowFilter.shows_duplicate.tags": string;
-  "rowFilter.shows_duplicate.location": string;
-  "rowFilter.shows_duplicate.id": string;
-  "rowFilter.shows_duplicate.profile": string;
-  /** supply */
-  "body.supply": definitions["supply"];
-  "rowFilter.supply.id": string;
-  "rowFilter.supply.title": string;
-  "rowFilter.supply.artwork": string;
-  "rowFilter.supply.published_at": string;
-  /** tags */
-  "body.tags": definitions["tags"];
-  "rowFilter.tags.id": string;
-  "rowFilter.tags.name": string;
-  /** track_links */
+  /** @description track_links */
   "body.track_links": definitions["track_links"];
+  /** Format: integer */
   "rowFilter.track_links.id": string;
+  /** Format: character varying */
   "rowFilter.track_links.platform": string;
+  /** Format: character varying */
   "rowFilter.track_links.href": string;
+  /** Format: character varying */
   "rowFilter.track_links.artwork": string;
+  /** Format: timestamp with time zone */
   "rowFilter.track_links.last_checked_at": string;
+  /** Format: character varying */
   "rowFilter.track_links.track": string;
-  /** tracks */
+  /** @description events */
+  "body.events": definitions["events"];
+  /** Format: character varying */
+  "rowFilter.events.id": string;
+  /** Format: character varying */
+  "rowFilter.events.title": string;
+  /** Format: character varying */
+  "rowFilter.events.artwork": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.events.published_at": string;
+  /** Format: jsonb */
+  "rowFilter.events.links": string;
+  /** Format: character varying */
+  "rowFilter.events.event_type": string;
+  /** @description markers */
+  "body.markers": definitions["markers"];
+  /** Format: time without time zone */
+  "rowFilter.markers.timestamp": string;
+  /**
+   * Format: character varying
+   * @description Artist and Title of track
+   */
+  "rowFilter.markers.rawTrack": string;
+  /** Format: integer */
+  "rowFilter.markers.position": string;
+  /** Format: character varying */
+  "rowFilter.markers.track": string;
+  /** Format: character varying */
+  "rowFilter.markers.id": string;
+  /** Format: character varying */
+  "rowFilter.markers.chapter": string;
+  /** @description shows_duplicate */
+  "body.shows_duplicate": definitions["shows_duplicate"];
+  /** Format: character varying */
+  "rowFilter.shows_duplicate.slug": string;
+  /** Format: character varying */
+  "rowFilter.shows_duplicate.title": string;
+  /** Format: character varying */
+  "rowFilter.shows_duplicate.state": string;
+  /** Format: character varying */
+  "rowFilter.shows_duplicate.artwork": string;
+  /** Format: integer */
+  "rowFilter.shows_duplicate.duration": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.shows_duplicate.published_at": string;
+  /** Format: jsonb */
+  "rowFilter.shows_duplicate.links": string;
+  /** Format: text */
+  "rowFilter.shows_duplicate.content": string;
+  /** Format: integer[] */
+  "rowFilter.shows_duplicate.tags": string;
+  /** Format: character varying */
+  "rowFilter.shows_duplicate.location": string;
+  /** Format: character varying */
+  "rowFilter.shows_duplicate.id": string;
+  /** Format: character varying */
+  "rowFilter.shows_duplicate.profile": string;
+  /** @description tracks */
   "body.tracks": definitions["tracks"];
+  /** Format: character varying */
   "rowFilter.tracks.title": string;
+  /** Format: character varying */
   "rowFilter.tracks.slug": string;
+  /** Format: character varying */
   "rowFilter.tracks.path": string;
+  /** Format: character varying */
   "rowFilter.tracks.artwork": string;
+  /** Format: character varying */
   "rowFilter.tracks.artist": string;
+  /** Format: character varying */
   "rowFilter.tracks.id": string;
+  /** @description links */
+  "body.links": definitions["links"];
+  /** Format: integer */
+  "rowFilter.links.id": string;
+  /** Format: character varying */
+  "rowFilter.links.platform": string;
+  /** Format: character varying */
+  "rowFilter.links.href": string;
+  /** @description supply */
+  "body.supply": definitions["supply"];
+  /** Format: integer */
+  "rowFilter.supply.id": string;
+  /** Format: text */
+  "rowFilter.supply.title": string;
+  /** Format: text */
+  "rowFilter.supply.artwork": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.supply.published_at": string;
+  /** @description album_artists */
+  "body.album_artists": definitions["album_artists"];
+  /** Format: character varying */
+  "rowFilter.album_artists.id": string;
+  /** Format: character varying */
+  "rowFilter.album_artists.artist": string;
+  /** Format: character varying */
+  "rowFilter.album_artists.album": string;
+  /** Format: integer */
+  "rowFilter.album_artists.position": string;
+  /** @description artists */
+  "body.artists": definitions["artists"];
+  /** Format: character varying */
+  "rowFilter.artists.title": string;
+  /** Format: character varying */
+  "rowFilter.artists.slug": string;
+  /** Format: jsonb */
+  "rowFilter.artists.links": string;
+  /** Format: character varying */
+  "rowFilter.artists.artwork": string;
+  /** Format: character varying */
+  "rowFilter.artists.id": string;
+  /** @description shows */
+  "body.shows": definitions["shows"];
+  /** Format: character varying */
+  "rowFilter.shows.slug": string;
+  /** Format: character varying */
+  "rowFilter.shows.title": string;
+  /** Format: character varying */
+  "rowFilter.shows.state": string;
+  /**
+   * Format: character varying
+   * @description path or URL to artwork
+   */
+  "rowFilter.shows.artwork": string;
+  /** Format: integer */
+  "rowFilter.shows.duration": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.shows.published_at": string;
+  /** Format: jsonb */
+  "rowFilter.shows.links": string;
+  /** Format: text */
+  "rowFilter.shows.content": string;
+  /** Format: integer[] */
+  "rowFilter.shows.tags": string;
+  /** Format: character varying */
+  "rowFilter.shows.location": string;
+  /** Format: character varying */
+  "rowFilter.shows.id": string;
+  /** Format: character varying */
+  "rowFilter.shows.profile": string;
+  /** @description profiles */
+  "body.profiles": definitions["profiles"];
+  /** Format: character varying */
+  "rowFilter.profiles.slug": string;
+  /** Format: character varying */
+  "rowFilter.profiles.title": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.profiles.published_at": string;
+  /** Format: integer */
+  "rowFilter.profiles.created_by": string;
+  /** Format: integer */
+  "rowFilter.profiles.updated_by": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.profiles.created_at": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.profiles.updated_at": string;
+  /** Format: character varying */
+  "rowFilter.profiles.id": string;
+  /** @description chapters */
+  "body.chapters": definitions["chapters"];
+  /** Format: character varying */
+  "rowFilter.chapters.title": string;
+  /** Format: character varying */
+  "rowFilter.chapters.slug": string;
+  /** Format: integer */
+  "rowFilter.chapters.position": string;
+  /** Format: jsonb */
+  "rowFilter.chapters.links": string;
+  /** Format: character varying */
+  "rowFilter.chapters.artwork": string;
+  /** Format: character varying */
+  "rowFilter.chapters.id": string;
+  /** Format: character varying */
+  "rowFilter.chapters.show": string;
+  /**
+   * Format: jsonb
+   * @description any social media associated to the DJ / performer
+   */
+  "rowFilter.chapters.socials": string;
+  /** Format: character varying */
+  "rowFilter.chapters.state": string;
+  /** Format: text */
+  "rowFilter.chapters.content": string;
+  /** @description album_links */
+  "body.album_links": definitions["album_links"];
+  /** Format: character varying */
+  "rowFilter.album_links.id": string;
+  /** Format: character varying */
+  "rowFilter.album_links.href": string;
+  /** Format: character varying */
+  "rowFilter.album_links.artwork": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.album_links.last_checked_at": string;
+  /** Format: character varying */
+  "rowFilter.album_links.album": string;
+  /** @description tags */
+  "body.tags": definitions["tags"];
+  /** Format: integer */
+  "rowFilter.tags.id": string;
+  /** Format: character varying */
+  "rowFilter.tags.name": string;
+  /** @description posts */
+  "body.posts": definitions["posts"];
+  /** Format: integer */
+  "rowFilter.posts.id": string;
+  /** Format: character varying */
+  "rowFilter.posts.title": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.posts.published_at": string;
+  /** Format: character varying */
+  "rowFilter.posts.state": string;
+  /** Format: character varying */
+  "rowFilter.posts.href": string;
+  /** Format: character varying */
+  "rowFilter.posts.artwork": string;
+  /** Format: character varying */
+  "rowFilter.posts.profile": string;
+  /** @description artist_links */
+  "body.artist_links": definitions["artist_links"];
+  /** Format: integer */
+  "rowFilter.artist_links.id": string;
+  /** Format: character varying */
+  "rowFilter.artist_links.platform": string;
+  /** Format: character varying */
+  "rowFilter.artist_links.href": string;
+  /** Format: character varying */
+  "rowFilter.artist_links.artwork": string;
+  /** Format: timestamp with time zone */
+  "rowFilter.artist_links.last_checked_at": string;
+  /** Format: character varying */
+  "rowFilter.artist_links.artist": string;
 }
 
 export interface operations {}

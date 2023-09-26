@@ -2,6 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
 @layer base {
   h1 {
     @apply text-2xl;
@@ -20,6 +34,7 @@ html {
 }
 
 body {
+  /* color: rgb(var(--foreground-rgb)); */
   height: 100vh;
   width: 100vw;
   overflow: hidden;
@@ -40,10 +55,15 @@ body {
   height: 100%;
   padding: 1rem;
 }
+
 @screen md {
   .cover-art {
     padding: 0;
     height: 28rem;
     width: 28rem;
   }
+}
+
+svg {
+  fill: currentColor;
 }

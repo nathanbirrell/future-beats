@@ -75,16 +75,17 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
 
     const baseQuery = () =>
       supabase
-        .from<definitions["shows"]>("shows")
+        // <"shows", definitions["shows"]>
+        .from("shows")
         .select(select)
         .limit(1)
         // NOTE: using ep 339 from Melbourne For testing
         // .textSearch("title", "339")
         .filter("profile", "eq", "QiEFFErt688")
         .filter("state", "eq", "published")
-        .filter("tags", "ov", "{5,10,11,15}");
+        .filter("tags", "ov", "{5,10,11,15}") as unknown as any;
 
-    let result = await baseQuery()
+    let result: PostgrestResponse<definitions["shows"]> = await baseQuery()
       .order("published_at", {
         ascending: true,
         nullsFirst: false,
@@ -96,6 +97,8 @@ export const useRandomShow = (options: Options = {}): HookReturn => {
       result = await baseQuery()
         .order("published_at", { ascending: false, nullsFirst: false })
         .filter("published_at", "lte", randomDate.toISOString());
+
+    console.log({ result });
 
     if (!result.data || result.data?.length < 1) {
       console.error({ result });

@@ -5,6 +5,7 @@ import {
   useState,
   createContext,
   useContext,
+  ReactNode,
 } from "react";
 
 // TODO: handle SC.Widget.Events.ERROR
@@ -20,6 +21,7 @@ interface Options {
   id: string;
   url?: string;
   nextTrackCallback?: () => Promise<void>;
+  children: ReactNode;
 }
 
 type ContextShape = ReturnType<typeof useSoundCloudPlayerInternal>;
@@ -28,12 +30,12 @@ const SoundCloudPlayerContext = createContext<ContextShape | undefined>(
   undefined
 );
 
-export const SoundCloudPlayerProvider: React.FC<Options> = ({
+export const SoundCloudPlayerProvider = ({
   children,
   id,
   url,
   nextTrackCallback,
-}) => {
+}: Options) => {
   const value = useSoundCloudPlayerInternal({ id, url, nextTrackCallback });
 
   return (
@@ -48,7 +50,7 @@ export const SoundCloudPlayerProvider: React.FC<Options> = ({
 export const useSoundCloudPlayerInternal = ({
   id,
   nextTrackCallback,
-}: Options) => {
+}: Omit<Options, "children">) => {
   const [loading, setLoading] = useState(false);
   const [playing, setPlaying] = useState(false);
   const [position, setPosition] = useState(0);

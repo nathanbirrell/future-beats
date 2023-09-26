@@ -1,27 +1,32 @@
-import React, { Fragment } from "react";
-import { ColourfulBackground } from "./components/ColourfulBackground";
-import { Loading } from "./components/Loading";
-import { RadioPlayer } from "./components/RadioPlayer";
-import { RADIO_PLAYER_ID } from "./constants";
+"use client";
 
-import { getShowLinks, imageLink, relativeDateIfRecent } from "./helper";
-import { useRandomShow } from "./hooks/useShows";
-import { SoundCloudPlayerProvider } from "./hooks/useSoundCloudPlayer";
-import { ReactComponent as Logo } from "./icons/logo.svg";
-import fallbackArt from "./images/fallback-art.webp";
+import React, { Fragment } from "react";
+import { ColourfulBackground } from "../components/ColourfulBackground";
+import { Loading } from "../components/Loading";
+import { RadioPlayer } from "../components/RadioPlayer";
+import { RADIO_PLAYER_ID } from "../constants";
+
+import { getShowLinks, imageLink, relativeDateIfRecent } from "../helper";
+import { useRandomShow } from "../hooks/useShows";
+import { SoundCloudPlayerProvider } from "../hooks/useSoundCloudPlayer";
+import Image from "next/image";
+import { Logo } from "@/components/Logo";
 
 const App = () => {
   const query = useRandomShow();
 
-  const loading = query.loading;
   const shows = React.useMemo(() => query.data?.slice() || [], [query]);
+  const loading = query.loading;
   const [show] = shows;
-  console.log({ show });
+  // const loading = true;
+  // const show = undefined;
 
-  const imageSrc = show?.artwork ? imageLink(show.artwork) : fallbackArt;
+  const imageSrc = show?.artwork
+    ? imageLink(show.artwork)
+    : "/fallback-art.webp";
 
   const links = getShowLinks(show);
-  const soundcloudUrl = show?.links?.soundcloud || "";
+  const soundcloudUrl = (show?.links as unknown as any)?.soundcloud || "";
 
   // TODO: add ErrorBoundary
   return (
@@ -47,7 +52,7 @@ const App = () => {
                       {imageSrc && (
                         <img
                           className="w-full h-full object-cover rounded-md filter drop-shadow-md"
-                          src={imageSrc}
+                          src={imageSrc as string}
                           alt={show.title}
                           title={show.title}
                           width="320px"
@@ -62,9 +67,9 @@ const App = () => {
                   </div>
 
                   <div className="container mb-6">
-                    {show.links?.soundcloud && (
+                    {soundcloudUrl && (
                       <RadioPlayer
-                        link={show.links.soundcloud}
+                        link={soundcloudUrl}
                         shuffleEpisode={query.shuffleEpisode}
                         loading={query.loading}
                         show={show as Show}
@@ -75,7 +80,7 @@ const App = () => {
                   <div className="flex flex-col text-sm">
                     <span>Show Links:</span>
                     <div className="block">
-                      {links.map(({ link, label }, index) => (
+                      {links.map(({ link = "", label = "" }, index: number) => (
                         <Fragment key={label}>
                           <a
                             href={link}
@@ -105,7 +110,7 @@ const App = () => {
               <span>
                 Made with ☕️ in Melbourne, Australia.{" "}
                 <a
-                  href={process.env.REACT_APP_SUPPORT_LINK}
+                  href={process.env.NEXT_PUBLIC_SUPPORT_LINK}
                   title="Buy us a coffee"
                   target="_blank"
                   rel="noreferrer"
@@ -114,7 +119,7 @@ const App = () => {
                 </a>
                 .{" "}
                 <a
-                  href={process.env.REACT_APP_GITHUB_PROJECT}
+                  href={process.env.NEXT_PUBLIC_GITHUB_PROJECT}
                   title="Future Beats Project on Github"
                   target="_blank"
                   rel="noreferrer"
@@ -128,7 +133,7 @@ const App = () => {
           </footer>
         </div>
 
-        {imageSrc && <ColourfulBackground src={imageSrc} />}
+        {imageSrc && <ColourfulBackground src={(imageSrc as string) || ""} />}
       </div>
     </div>
   );

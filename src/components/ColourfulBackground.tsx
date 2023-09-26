@@ -1,3 +1,5 @@
+"use client";
+
 import React, { Fragment, useCallback, useEffect, useState } from "react";
 import "./ColourfulBackground.css";
 

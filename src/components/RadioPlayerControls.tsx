@@ -1,10 +1,4 @@
-import { ReactComponent as ContinuousPlayIcon } from "../icons/continuous-play.svg";
-import { ReactComponent as ContinuousPlayActiveIcon } from "../icons/continuous-play-active.svg";
-import { ReactComponent as PlayIcon } from "../icons/play.svg";
-import { ReactComponent as PauseIcon } from "../icons/pause.svg";
-import { ReactComponent as RewindIcon } from "../icons/rewind.svg";
-import { ReactComponent as FastForwardIcon } from "../icons/fast-forward.svg";
-import { ReactComponent as ShuffleIcon } from "../icons/shuffle.svg";
+import Image from "next/image";
 
 type Props = {
   playing?: boolean;
@@ -36,7 +30,11 @@ const PlayPauseButton = ({
   playing,
   onPlayClick,
 }: Pick<Props, "playing" | "onPlayClick">) => {
-  const icon = playing ? <PauseIcon /> : <PlayIcon />;
+  const icon = playing ? (
+    <Image src="/icons/pause.svg" alt="Pause" height={50} width={50} />
+  ) : (
+    <Image src="/icons/play.svg" alt="Play" height={50} width={50} />
+  );
   const title = playing ? "Pause" : "Play";
   return (
     <button title={title} onClick={onPlayClick} className={baseBtnClassNames}>
@@ -52,7 +50,7 @@ const RewindButton = ({ onRewindClick }: Pick<Props, "onRewindClick">) => {
       onClick={onRewindClick}
       title="Back 30sec"
     >
-      <RewindIcon />
+      <Image src="/icons/rewind.svg" alt="Rewind" height={50} width={50} />
     </button>
   );
 };
@@ -65,7 +63,12 @@ const FastForwardButton = ({
       onClick={onFastForwardClick}
       title="Forward 30sec"
     >
-      <FastForwardIcon />
+      <Image
+        src="/icons/fast-forward.svg"
+        alt="Fast Forward"
+        height={50}
+        width={50}
+      />
     </button>
   );
 };
@@ -81,7 +84,7 @@ const ShuffleButton = ({
       onClick={onShuffleClick}
       disabled={loading}
     >
-      <ShuffleIcon />
+      <Image src="/icons/shuffle.svg" alt="Shuffle" height={50} width={50} />
     </button>
   );
 };
@@ -93,9 +96,19 @@ const ContinuousPlayButton = ({
   if (!onContinuousPlayClick) return null;
 
   const icon = continuousPlaying ? (
-    <ContinuousPlayActiveIcon />
+    <Image
+      src="/icons/continuous-play-active.svg"
+      alt="Continuous Play"
+      height={50}
+      width={50}
+    />
   ) : (
-    <ContinuousPlayIcon />
+    <Image
+      src="/icons/continuous-play.svg"
+      alt="Continuous Play"
+      height={50}
+      width={50}
+    />
   );
   const title = continuousPlaying
     ? "Switch Off Continuous Play"

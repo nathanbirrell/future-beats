@@ -1,5 +1,7 @@
 import { parseISO } from "date-fns";
 
+export const BASE_SITE_TITLE = "Future Beats ~ Soulection Radio Player";
+
 /**
  * First episode is actually: "2011-01-25T00:00:00+00:00"
  * But I'm thinking let's play Soulection 137 and up

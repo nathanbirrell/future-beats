@@ -26,7 +26,9 @@ const linkLabels = {
   appleMusic: "Apple Music",
   soulection: "Soulection",
 };
-export const getShowLinks = (show: Omit<Show, "chapters"> | undefined) => {
+export const getShowLinks = (
+  show: Omit<Show, "chapters"> | undefined
+): { label: string; link: string }[] => {
   if (!show) return [];
 
   const showLink = {
