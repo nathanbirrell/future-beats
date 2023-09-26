@@ -50,6 +50,7 @@ const App = () => {
                   <div className="my-4 lg:mt-12">
                     <div className="cover-art  pointer-events-none">
                       {imageSrc && (
+                        // eslint-disable-next-line @next/next/no-img-element
                         <img
                           className="w-full h-full object-cover rounded-md filter drop-shadow-md"
                           src={imageSrc as string}
@@ -70,7 +71,7 @@ const App = () => {
                     {soundcloudUrl && (
                       <RadioPlayer
                         link={soundcloudUrl}
-                        shuffleEpisode={query.shuffleEpisode}
+                        // shuffleEpisode={query.shuffleEpisode}
                         loading={query.loading}
                         show={show as Show}
                       />

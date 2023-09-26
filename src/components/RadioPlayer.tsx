@@ -27,8 +27,12 @@ export const RadioPlayer = (props: Props) => {
     nextTrack,
   } = useSoundCloudPlayer();
 
+  console.log({ playing });
+
   // const [currentTrack, setCurrentTrack] = useState(show.title || "Soulection Radio");
   const currentTrack = useMemo(() => {
+    console.log({ show, position });
+
     let result = show.title || "Soulection Radio";
 
     show.chapters.forEach((chapter) => {

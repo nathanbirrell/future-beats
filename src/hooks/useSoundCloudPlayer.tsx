@@ -36,10 +36,14 @@ export const SoundCloudPlayerProvider = ({
   url,
   nextTrackCallback,
 }: Options) => {
-  const value = useSoundCloudPlayerInternal({ id, url, nextTrackCallback });
+  const playerState = useSoundCloudPlayerInternal({
+    id,
+    url,
+    nextTrackCallback,
+  });
 
   return (
-    <SoundCloudPlayerContext.Provider value={value}>
+    <SoundCloudPlayerContext.Provider value={playerState}>
       {children}
 
       {url && <PlayerIframe id={id} link={url} />}
@@ -57,6 +61,8 @@ export const useSoundCloudPlayerInternal = ({
   const [duration, setDuration] = useState(0);
 
   let widget = useRef<SoundCloudWidget>(undefined);
+
+  console.log({ id });
 
   const play = useCallback(
     () => widget.current && widget.current.play(),
@@ -141,8 +147,9 @@ export const useSoundCloudPlayerInternal = ({
   }, [widget, updatePosition]);
 
   // useEffect(() => {
+  //   if (loading) return;
+
   //   widget.current.bind(window.SC.Widget.Events.READY, () => {
-  //     if (loading) return;
   //     // After initial load...
   //     console.log("// After initial load...");
   //     play();
@@ -194,7 +201,7 @@ export const useSoundCloudPlayerInternal = ({
 };
 
 export const hideIframe: React.HTMLAttributes<HTMLIFrameElement>["style"] = {
-  display: "none",
+  visibility: "hidden",
   cursor: "none",
   pointerEvents: "none",
   position: "absolute",
@@ -235,7 +242,7 @@ const PlayerIframe = ({ id, link, ...props }: iFrameProps) => {
       scrolling="no"
       allow="autoplay"
       src={widgetLink}
-      style={hideIframe}
+      // style={hideIframe}
       // style={showIframe}
       {...props}
     ></iframe>
